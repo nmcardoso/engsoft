@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/test', (req, res) => {
-  res.send('Test Route')
+  res.send('Test Route 2')
 })
 
 app.listen(process.env.PORT, () => {
