@@ -2,8 +2,8 @@
 git clone https://github.com/nmcardoso/engsoft.git /tmp/deploy
 
 # move files
-cp -r /tmp/deploy/server/* .
-rm -rf /tmp/deploy
+rm -rf server
+cp -r /tmp/deploy/server .
 
 # restart editor
 refresh
