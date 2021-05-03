@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
+app.get('/test', (req, res) => {
+  res.send('Test Route')
+})
+
 app.listen(process.env.PORT, () => {
   console.log(`Your app is listening on port ${process.env.PORT}`)
 })
