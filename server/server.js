@@ -4,9 +4,6 @@ const cmd = require('node-cmd')
 const app = express()
 app.use(express.json())
 
-// Test server deploy
-// Test 02
-
 // Deploy Route
 app.get('/deploy', (req, res) => {
   if (req.header('deploy_key') !== process.env.deploy_key) {
