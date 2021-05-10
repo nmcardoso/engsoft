@@ -9,7 +9,7 @@ app.use(express.json())
 // Deploy Route
 app.get('/deploy', (req, res) => {
   if (req.header.deploy_key !== process.env.deploy_key) {
-    return res.status(401)
+    return res.status(401).send('auth failed')
   }
 
   cmd.get('bash deploy.sh', (err, data) => {
