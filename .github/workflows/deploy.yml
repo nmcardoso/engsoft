@@ -31,4 +31,4 @@ jobs:
     steps:
       - name: request
         run: |
-          curl -H "deploy_key: ${{ secrets.deploy_key }}" -X GET https://engsoft.glitch.me/deploy
+          curl -H "deploy_key: ${{ secrets.DEPLOY_KEY }}" -X GET https://engsoft.glitch.me/deploy
