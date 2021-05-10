@@ -5,4 +5,4 @@ git clone https://github.com/nmcardoso/engsoft.git /tmp/deploy
 mv /tmp/deploy/server/* .
 
 # restart editor
-restart
+refresh
