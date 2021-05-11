@@ -7,7 +7,7 @@ app.use(express.json())
 // Test server deploy
 
 // Deploy Route
-app.post('/deploy', (req, res) => {
+app.get('/deploy', (req, res) => {
   if (req.header.deploy_key !== process.env.deploy_key) {
     return res.status(401)
   }
