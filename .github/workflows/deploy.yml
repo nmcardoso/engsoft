@@ -23,6 +23,8 @@ jobs:
           git remote set-url origin https://nmcardoso:${{ secrets.GITHUB_TOKEN }}@github.com/nmcardoso/engsoft.git
           cd client
           npm run deploy
+        env:
+          PUBLIC_URL: https://nmcardoso.github.io/engsoft
 
   deploy_server:
     runs-on: ubuntu-latest
