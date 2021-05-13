@@ -9,19 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install Packages
-      run: npm ci
-    - name: Build & Deploy to GH Pages
-      run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "Github Actions"
-        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/nmcardoso/engsoft.git
-        cd client
-        npm run build
-        npm run deploy
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install Packages
+        run: npm ci
+      - name: Build & Deploy to GH Pages
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "Github Actions"
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/nmcardoso/engsoft.git
+          cd client
+          npm run build
+          npm run deploy
 
   deploy server:
     runs-on: ubuntu-latest
