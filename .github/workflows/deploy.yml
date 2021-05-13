@@ -12,16 +12,16 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14.x'
-      - name: Change current working directory to client
+      - name: Install Packages
         run: |
           cd client
-      - name: Install Packages
-        run: npm install
+          npm install
       - name: Build & Deploy to GH Pages
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "Github Actions"
           git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/nmcardoso/engsoft.git
+          cd client
           npm run deploy
 
   deploy_server:
