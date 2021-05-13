@@ -16,8 +16,8 @@ jobs:
       run: npm ci
     - name: Build & Deploy to GH Pages
       run: |
-        git config --global user.email "deploy@example.com"
-        git config --global user.name "GH Pages Deploy"
+        git config --global user.email "actions@github.com"
+        git config --global user.name "Github Actions"
         git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/nmcardoso/engsoft.git
         cd client
         npm run build
