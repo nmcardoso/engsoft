@@ -10,7 +10,7 @@ app.get('/deploy', (req, res) => {
     return res.status(401).send('auth failed')
   }
 
-  cmd.get('bash deploy.sh', (err, data) => {
+  cmd.get('bash src/deploy.sh', (err, data) => {
     if (err) return console.log(err)
     console.log(data)
     return res.status(200).send(data)
