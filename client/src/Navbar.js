@@ -2,7 +2,7 @@ function Navbar() {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div class="container">
-        <a class="navbar-brand me-4" href="#">App de Vacinas</a>
+        <a class="navbar-brand me-4" href="javascript:;">App de Vacinas</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -16,10 +16,10 @@ function Navbar() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Cadastro</a>
+              <a class="nav-link active" aria-current="page" href="javascript:;">Cadastro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Configurações</a>
+              <a class="nav-link disabled" href="javascript:;">Configurações</a>
             </li>
           </ul>
         </div>
