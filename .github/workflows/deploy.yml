@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  deploy client:
+  deploy_client:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
           npm run build
           npm run deploy
 
-  deploy server:
+  deploy_server:
     runs-on: ubuntu-latest
     steps:
       - name: request
