@@ -1,0 +1,15 @@
+name: server_deploy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: request
+        run: |
+          curl -H "deploy_key: ${{ secrets.DEPLOY_KEY }}" -X GET https://engsoft.glitch.me/deploy

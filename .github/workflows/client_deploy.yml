@@ -1,11 +1,13 @@
-name: deploy
+name: client_deploy
 on:
   push:
     branches:
       - main
+    paths:
+      - 'client/**'
 
 jobs:
-  deploy_client:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,10 +27,3 @@ jobs:
           npm run deploy
         env:
           PUBLIC_URL: https://nmcardoso.github.io/engsoft
-
-  deploy_server:
-    runs-on: ubuntu-latest
-    steps:
-      - name: request
-        run: |
-          curl -H "deploy_key: ${{ secrets.DEPLOY_KEY }}" -X GET https://engsoft.glitch.me/deploy
