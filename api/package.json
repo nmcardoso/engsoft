@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "node-cmd": "^4.0.0",
     "pg": "^8.6.0"
   },
