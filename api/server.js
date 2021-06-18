@@ -11,7 +11,6 @@ async function connect() {
     connectionString: 'postgres://root:root@postgres:5432/okteto'
   })
 
-  //apenas testando a conexão
   const client = await pool.connect()
   console.log("Criou pool de conexões no PostgreSQL!")
 
