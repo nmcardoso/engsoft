@@ -8,10 +8,6 @@ const express = require('express')
 const db = require('./config/database')
 const authRouter = require('./routes/auth')
 
-db.authenticate()
-  .then(() => console.log('Database connected'))
-  .catch(err => console.error(err))
-
 const app = express()
 app.use(express.json())
 app.use('/api/auth', authRouter)
