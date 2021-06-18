@@ -2,13 +2,16 @@ const express = require('express')
 const { Pool } = require('pg')
 const app = express()
 
+if (process.env.NODE_ENV === 'dev') {
+  require('dotenv').config({ path: 'dev.env' })
+}
 
 async function connect() {
   if (global.connection)
     return global.connection.connect()
 
   const pool = new Pool({
-    connectionString: 'postgres://root:root@postgres:5432/production'
+    connectionString: process.env.PG_CONN_STRING
   })
 
   const client = await pool.connect()
@@ -18,7 +21,6 @@ async function connect() {
   console.log(res.rows[0])
   client.release()
 
-  //guardando para usar sempre o mesmo
   global.connection = pool
   return pool.connect()
 }
