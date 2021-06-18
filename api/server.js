@@ -8,7 +8,7 @@ async function connect() {
     return global.connection.connect()
 
   const pool = new Pool({
-    connectionString: 'postgres://root:root@postgres:5432/okteto'
+    connectionString: 'postgres://root:root@postgres:5432/production'
   })
 
   const client = await pool.connect()
