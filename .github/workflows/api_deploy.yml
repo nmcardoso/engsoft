@@ -1,0 +1,23 @@
+name: server_deploy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login
+      uses: okteto/login@master
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+    - name: Deploy application
+      uses: okteto/pipeline@master
+      with:
+        name: engsoft-production
+        namespace: nmcardoso
