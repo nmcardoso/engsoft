@@ -1,4 +1,4 @@
-POST http://localhost:8080/api/auth/login
+POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/api/auth/register
+POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
@@ -19,13 +19,13 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/api/auth/posts
+GET http://localhost:8080/auth/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQwMjc3NjF9.TZc7uQoAo58z95yaC_Bze6s9e3WhasPmlwLNJ2Mjp64
 
 
 ###
 
-POST https://engsoft-production-nmcardoso.cloud.okteto.net/api/auth/login
+POST https://engsoft-production-nmcardoso.cloud.okteto.net/auth/login
 Content-Type: application/json
 
 {
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 ###
 
-POST https://engsoft-production-nmcardoso.cloud.okteto.net/api/auth/register
+POST https://engsoft-production-nmcardoso.cloud.okteto.net/auth/register
 Content-Type: application/json
 
 {

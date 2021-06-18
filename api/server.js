@@ -5,18 +5,17 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 const express = require('express')
-const db = require('./config/database')
 const authRouter = require('./routes/auth')
 
 const app = express()
 app.use(express.json())
-app.use('/api/auth', authRouter)
+app.use('/auth', authRouter)
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get("/api/health", (req, res) => {
+app.get("/health", (req, res) => {
   res.sendStatus(200)
   return
 })
