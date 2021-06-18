@@ -4,7 +4,10 @@ on:
     branches:
       - main
     paths:
-      - 'server/**'
+      - 'api/**'
+      - '/chart/**'
+      - 'okteto-pipeline.yml'
+      - '.github/workflows/api_deploy.yml'
 
 jobs:
   deploy:
