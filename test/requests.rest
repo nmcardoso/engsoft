@@ -1,0 +1,23 @@
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+  "username": "natan",
+  "password": "natan2"
+}
+
+###
+
+POST http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+  "username": "natan",
+  "password": "natan2"
+}
+
+
+###
+
+GET http://localhost:8080/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQwMjc3NjF9.TZc7uQoAo58z95yaC_Bze6s9e3WhasPmlwLNJ2Mjp64
