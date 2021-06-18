@@ -8,4 +8,4 @@ COPY package.json ./
 RUN npm install
 
 COPY . .
-CMD ["npm", "production"]
+CMD ["npm", "run", "production"]
