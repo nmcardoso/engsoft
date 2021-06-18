@@ -1,6 +1,5 @@
 icon: https://raw.githubusercontent.com/nmcardoso/engsoft/main/chart/node-icon.png
 deploy:
-  - cat api/config/template.env
   - envsubst < api/config/template.env > api/config/prod.env
   - okteto build -t okteto.dev/api:${OKTETO_GIT_COMMIT} api
   - helm repo update
