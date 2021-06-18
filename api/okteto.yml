@@ -1,4 +1,4 @@
-name: api
+name: api-prod
 command: ["bash"]
 forward: 
   - 8080:8080
