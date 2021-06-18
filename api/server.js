@@ -1,5 +1,7 @@
 if (process.env.NODE_ENV === 'dev') {
-  require('dotenv').config({ path: 'dev.env' })
+  require('dotenv').config({ path: 'config/dev.env' })
+} else if (process.env.NODE_ENV === 'production') {
+  require('dotenv').config({ path: 'config/prod.env' })
 }
 
 const express = require('express')
