@@ -3,7 +3,7 @@ import axios from 'axios'
 class API {
   constructor() {
     this.url = process.env.NODE_ENV === 'production' ?
-      'https://engsoft-production-nmcardoso.cloud.okteto.net/' : 'http://localhost:8080'
+      'https://engsoft-production-nmcardoso.cloud.okteto.net' : 'http://localhost:8080'
   }
 
   getUrl(route) {
