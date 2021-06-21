@@ -26,4 +26,4 @@ jobs:
           cd client
           npm run deploy
         env:
-          PUBLIC_URL: https://nmcardoso.github.io/engsoft
+          PUBLIC_URL: https://vac.natanael.net
