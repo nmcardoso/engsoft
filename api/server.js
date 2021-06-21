@@ -5,10 +5,15 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 const express = require('express')
+const cors = require('cors')
+
 const authRouter = require('./routes/auth')
 
 const app = express()
+
 app.use(express.json())
+app.use(cors())
+
 app.use('/auth', authRouter)
 
 app.get('/', (req, res) => {
