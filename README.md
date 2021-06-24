@@ -1,4 +1,7 @@
-# engsoft
+# Proejto EPUSP + Vacivida
+<h2 align="center">
+	Telas da aplicação:
+</h2>
 <p align="center">
-  <img src="img/planejamento_paginas.png" width="500px" />
+  <img src="img/planejamento_paginasV2.png" width="100%" />
 </p>
