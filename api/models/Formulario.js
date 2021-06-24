@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const db = require('../config/database')
+const UnidadeSaude = require('./UnidadeSaude')
 
 const Formulario = db.define('formulario', {
   id: {
@@ -114,6 +115,13 @@ const Formulario = db.define('formulario', {
     type: DataTypes.DATE,
     allowNull: true
   }
+})
+
+Formulario.belongsTo(UnidadeSaude, {
+  foreignKey: 'id_unidade_saude'
+})
+UnidadeSaude.hasMany(Formulario, {
+  foreignKey: 'id_unidade_saude'
 })
 
 module.exports = Formulario
