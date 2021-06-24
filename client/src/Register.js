@@ -98,7 +98,7 @@ function Register() {
               <button
                 type="submit"
                 className="btn btn-success btn-block fw-bold py-2 px-3 mx-3">
-                Entrar
+                Cadastrar
               </button>
             )}
           </form>
