@@ -75,6 +75,9 @@ class API {
     return this.client.get(`/formulario/unsynced/${id}`)
   }
 
+  syncForms(id) {
+    return this.client.get(`/formulario/sync/${id}`)
+  }
 }
 
 export default API
