@@ -31,7 +31,7 @@ const Formulario = db.define('formulario', {
     allowNull: true
   },
   lote: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: true
   },
   data_vacinacao: {
@@ -83,7 +83,7 @@ const Formulario = db.define('formulario', {
     allowNull: true
   },
   numero: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: true
   },
   bairro: {
@@ -96,6 +96,14 @@ const Formulario = db.define('formulario', {
   },
   cep: {
     type: DataTypes.STRING,
+    allowNull: true
+  },
+  id_vacivida: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  syncAt: {
+    type: DataTypes.DATE,
     allowNull: true
   },
   createdAt: {
