@@ -25,6 +25,16 @@ class API {
       data: { username, password }
     })
   }
+
+  validateToken(token) {
+    return axios({
+      url: this.getUrl('/auth/validate'),
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
 }
 
 export default API

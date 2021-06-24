@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import API from './API'
 import './Login.css'
 
@@ -8,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const [loading, isLoading] = useState(false)
+  const history = useHistory()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -15,9 +18,9 @@ function Login() {
     const api = new API()
     api.login({ username, password })
       .then(resp => {
-        if (resp.success) {
-          localStorage.setItem('token', resp.accessToken)
-          isLoading(false)
+        if (resp.data.success) {
+          localStorage.setItem('token', resp.data.accessToken)
+          history.push('/dashboard')
         } else {
           setMessage(resp.data.message)
           isLoading(false)
