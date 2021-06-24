@@ -8,6 +8,7 @@ const express = require('express')
 const cors = require('cors')
 
 const authRouter = require('./routes/auth')
+const exportRouter = require('./routes/export')
 
 const app = express()
 
@@ -15,12 +16,13 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/auth', authRouter)
+app.use('/export', exportRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get("/health", (req, res) => {
+app.get('/health', (req, res) => {
   res.sendStatus(200)
   return
 })
