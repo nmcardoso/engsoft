@@ -1,6 +1,7 @@
 const express = require('express')
 const copyTo = require('pg-copy-streams').to
 const { Pool } = require('pg')
+const { exec } = require('child_process')
 
 const router = express.Router()
 
@@ -14,6 +15,25 @@ router.get('/:table.csv', async (req, res) => {
   dataStream.pipe(res)
   dataStream.on('close', () => {
     client.end()
+  })
+})
+
+
+router.get('/dump.sql', (req, res) => {
+  exec(`pg_dump ${process.env.PG_CONNECTION} -f /tmp/dump.sql`, (error, stdout, stderr) => {
+    if (error) {
+      console.log(error)
+      return
+    }
+
+    if (stderr) {
+      console.log(stderr)
+      return
+    }
+
+    console.log(stdout)
+
+    res.sendFile('/tmp/dump.sql')
   })
 })
 
