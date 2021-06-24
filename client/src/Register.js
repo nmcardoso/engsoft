@@ -5,21 +5,26 @@ import './Login.css'
 function Register() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState({})
+  const [loading, isLoading] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
+    isLoading(true)
     const api = new API()
     api.register({ username, password })
       .then(resp => {
-        if (!resp.data.success) {
-          setMessage(resp.data.message)
+        if (resp.data.success) {
+          setMessage({ value: resp.data.message, type: 'success' })
+          isLoading(false)
         } else {
-
+          setMessage({ value: resp.data.message, type: 'error' })
+          isLoading(false)
         }
       })
       .catch(error => {
-        setMessage(error.response.data.message)
+        setMessage({ value: error.response.data.message, type: 'error' })
+        isLoading(false)
       })
   }
 
@@ -37,9 +42,12 @@ function Register() {
             Cadastro
           </div>
 
-          {message ? (
-            <div className="alert alert-danger" style={{ width: '400px' }} role="alert">
-              {message}
+          {message.value ? (
+            <div
+              className={message.type == 'error' ? "alert alert-danger" : "alert alert-success"}
+              style={{ width: '400px' }}
+              role="alert">
+              {message.value}
             </div>
           ) : false}
 
@@ -74,11 +82,25 @@ function Register() {
                 size="30"
                 onChange={e => setPassword(e.target.value)} />
             </div>
-            <button
-              type="submit"
-              className="btn btn-success btn-block fw-bold py-2 px-3 mx-3 mt-3">
-              Cadastrar
-            </button>
+
+            {loading ? (
+              <button
+                className="btn btn-success fw-bold py-2 px-3 mx-3"
+                type="submit"
+                disabled>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true" />
+                &nbsp;&nbsp;&nbsp;Solicitando...
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-success btn-block fw-bold py-2 px-3 mx-3">
+                Cadastrar
+              </button>
+            )}
           </form>
         </div>
       </div>

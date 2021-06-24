@@ -1,5 +1,6 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const { authenticateToken } = require('../middleware/auth')
 const Login = require('../models/Login')
 
 const router = express.Router()
@@ -54,6 +55,10 @@ router.post('/register', async (req, res) => {
     success: true,
     message: 'Usuário criado com sucesso.'
   })
+})
+
+router.get('/validate', authenticateToken, async (req, res) => {
+  res.json(req.user)
 })
 
 

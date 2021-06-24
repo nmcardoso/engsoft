@@ -19,6 +19,13 @@ Content-Type: application/json
 
 ###
 
+
+GET http://localhost:8080/auth/validate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQ1Mjg5MzN9.1kQoxXuKN0ZOCXCw05GIkLxkuWV5LXJ7GaDQivXAZSg
+
+
+###
+
 GET http://localhost:8080/auth/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQwMjc3NjF9.TZc7uQoAo58z95yaC_Bze6s9e3WhasPmlwLNJ2Mjp64
 

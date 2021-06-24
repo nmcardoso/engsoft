@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import API from './API'
 import './Login.css'
 
@@ -7,16 +9,26 @@ function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
+  const [loading, isLoading] = useState(false)
+  const history = useHistory()
 
   const handleSubmit = e => {
     e.preventDefault()
+    isLoading(true)
     const api = new API()
     api.login({ username, password })
       .then(resp => {
-        console.log(resp)
+        if (resp.data.success) {
+          localStorage.setItem('token', resp.data.accessToken)
+          history.push('/dashboard')
+        } else {
+          setMessage(resp.data.message)
+          isLoading(false)
+        }
       })
       .catch(error => {
         setMessage(error.response.data.message)
+        isLoading(false)
       })
   }
 
@@ -88,11 +100,24 @@ function Login() {
                 Ficar logado?
               </label>
             </div>
-            <button
-              type="submit"
-              className="btn btn-success btn-block fw-bold py-2 px-3 mx-3">
-              Entrar
-            </button>
+            {loading ? (
+              <button
+                className="btn btn-success fw-bold py-2 px-3 mx-3"
+                type="submit"
+                disabled>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true" />
+                &nbsp;&nbsp;&nbsp;Autenticando...
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-success btn-block fw-bold py-2 px-3 mx-3">
+                Entrar
+              </button>
+            )}
           </form>
         </div>
       </div>
