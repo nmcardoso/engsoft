@@ -37,4 +37,23 @@ router.get('/dump.sql', (req, res) => {
   })
 })
 
+
+router.get('/schema.sql', (req, res) => {
+  exec(`pg_dump ${process.env.PG_CONNECTION} --schema-only -f /tmp/schema.sql`, (error, stdout, stderr) => {
+    if (error) {
+      console.log(error)
+      return
+    }
+
+    if (stderr) {
+      console.log(stderr)
+      return
+    }
+
+    console.log(stdout)
+
+    res.sendFile('/tmp/schema.sql')
+  })
+})
+
 module.exports = router
