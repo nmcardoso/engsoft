@@ -20,42 +20,7 @@ async function sync() {
   // sync database with sequelize
   await db.sync({ force: true })
 
-  const command = [
-    'pg_restore',
-    `-U ${process.env.PG_USER}`,
-    '-w',
-    `-h ${process.env.PG_HOST}`,
-    `-p ${process.env.PG_PORT}`,
-    `-d ${process.env.PG_DB}`,
-    '-c',
-    '-1',
-    '--no-owner',
-    'sql/database-data.psql'
-  ]
-  exec(command.join(' '), async (err, stdout, stderr) => {
-    if (err) {
-      console.log(err)
-      return
-    }
-
-    if (stderr) {
-      console.log(stderr)
-      return
-    }
-
-    console.log('\n')
-    console.log(models)
-    console.log('\n')
-
-    const tables = await db.getQueryInterface().showAllTables()
-
-    for (const table of tables) {
-      await db.query(`SELECT setval('${table}_id_seq', (SELECT MAX(id) FROM "${table}"))`)
-    }
-
-    console.log(stdout)
-    console.log('>> Banco Sincronizado com Sucesso')
-  })
+  console.log('>> Banco de dados sincronizado com sucesso')
 }
 
 sync()
