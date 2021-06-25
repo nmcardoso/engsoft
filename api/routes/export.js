@@ -2,6 +2,7 @@ const express = require('express')
 const copyTo = require('pg-copy-streams').to
 const { Pool } = require('pg')
 const { exec } = require('child_process')
+const convertCsvToXlsx = require('@aternus/csv-to-xlsx')
 
 const router = express.Router()
 
@@ -16,6 +17,20 @@ router.get('/:table.csv', async (req, res) => {
   dataStream.on('close', () => {
     client.end()
   })
+})
+
+
+router.get('/:table.xlsx', async (req, res) => {
+  const pool = new Pool({
+    connectionString: process.env.PG_CONNECTION
+  })
+  const client = await pool.connect()
+  const q = `COPY ${req.params.table} TO '/tmp/${req.params.table}.csv' DELIMITER ',' CSV HEADER`
+  await client.query(q)
+  client.release()
+  client.end()
+  convertCsvToXlsx(`/tmp/${req.params.table}.csv`, `/tmp/${req.params.table}.xlsx`)
+  res.sendFile(`/tmp/${req.params.table}.xlsx`)
 })
 
 
