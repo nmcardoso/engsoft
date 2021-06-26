@@ -26,7 +26,7 @@ POST http://localhost:8080/formulario/
 Content-Type: application/json
 
 {
-  "id_unidade_saude": 1,
+  "id_unidade_saude": 5,
   "cpf": "77788899945",
   "telefone": "3588996633",
   "nome": "Natanael",
@@ -47,6 +47,23 @@ Content-Type: application/json
   "complemento": "Lado ímpar",
   "cep": "37810000"
 }
+
+###
+
+
+POST http://localhost:8080/formulario/sync
+Content-Type: application/json
+
+{
+  "id_unidade_saude": 1
+}
+
+
+###
+
+
+GET http://localhost:8080/formulario/unsynced?id_unidade_saude=1
+
 
 ###
 
