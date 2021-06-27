@@ -1,8 +1,28 @@
+const http = require('http')
+
 const express = require('express')
 const cmd = require('node-cmd')
+const { customAlphabet } = require('nanoid')
+const { Server } = require('socket.io')
+
+const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+const nanoid = customAlphabet(alphabet, 16)
 
 const app = express()
+const server = http.createServer(app)
+const io = new Server(server)
+
 app.use(express.json())
+app.set('view engine', 'ejs')
+
+let db = []
+
+io.on('connection', socket => {
+  console.log('user connected')
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+})
 
 // Deploy Route
 app.get('/deploy', (req, res) => {
@@ -18,13 +38,35 @@ app.get('/deploy', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Hello World')
+  res.render('index', {
+    NODE_ENV: process.env.NODE_ENV,
+    data: db
+  })
 })
 
-app.get('/test', (req, res) => {
-  res.send('Test Route <CI/CD> KEY')
+app.post('/form', (req, res) => {
+  const forms = req.body
+  const ids = []
+  forms.forEach(form => {
+    const id = nanoid()
+    const preparedForm = { ...form, id, syncAt: new Date() }
+    ids.push(id)
+    db.push(preparedForm)
+    io.emit('new_form', preparedForm)
+  })
+  res.json(ids.map(i => ({ id: i, success: true })))
 })
 
-app.listen(process.env.PORT || 3333, () => {
+app.get('/clear', (req, res) => {
+  db = []
+  res.send('OK')
+})
+
+app.get('/e', (req, res) => {
+  io.emit('new_form', { cuceta: 'fole' })
+  res.send('OK')
+})
+
+server.listen(process.env.PORT || 3333, () => {
   console.log(`Your app is listening on port ${process.env.PORT || 3333}`)
 })
