@@ -3,7 +3,7 @@ import API from './API'
 import './Login.css'
 
 function Register() {
-  const [name, setName] = useState('')
+  const [nome, setNome] = useState('')
   const [CPF, setCPF] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -15,7 +15,7 @@ function Register() {
     e.preventDefault()
     isLoading(true)
     const api = new API()
-    api.register({ username, password })
+    api.register({ username, password, nome, CPF, unidade })
       .then(resp => {
         if (resp.data.success) {
           setMessage({ value: resp.data.message, type: 'success' })
@@ -67,7 +67,7 @@ function Register() {
                 className="form-control form-control-lg"
                 id="exampleInputName"
                 placeholder=""
-                onChange={e => setName(e.target.value)} />
+                onChange={e => setNome(e.target.value)} />
             </div>
             {/* campo de CPF */}
             <div className="form-group">
@@ -81,7 +81,7 @@ function Register() {
                 className="form-control form-control-lg"
                 id="exampleInputCPF"
                 placeholder=""
-                onChange={e => setName(e.target.value)} />
+                onChange={e => setCPF(e.target.value)} />
             </div>
             {/* campo do usuario */}
             <div className="form-group">
@@ -122,18 +122,22 @@ function Register() {
                 htmlFor="exampleInputUnidade">
                 Unidade
               </label>
-              <input
-                type="text"
-                className="form-control form-control-lg"
-                id="exampleInputName"
-                placeholder=""
-                onChange={e => setName(e.target.value)} />
+             
+              <select 
+                className="form-control form-control-lg" 
+                onChange={e => setUnidade(e.target.value)}
+              >
+                <option>Unidade 1</option>
+                <option>Unidade 2</option>
+                <option>Unidade 3</option>                
+              </select>
+              
             </div>
             
 
             {loading ? (
               <button
-                className="btn btn-success fw-bold py-2 px-3 mx-4"
+                className="btn btn-success btn-lg btn-block fw-bold py-3 px-3 mx-1 my-3"
                 type="submit"
                 disabled>
                 <span

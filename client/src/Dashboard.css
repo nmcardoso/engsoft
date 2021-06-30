@@ -6,9 +6,11 @@
     animation-fill-mode: forwards;
 }
 .fadeIn{
-    animation: fadein 1;
-    animation-delay: 1;
-
+    opacity: 0;
+    animation-name: fadein;
+    animation-delay: 2.4s;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes fadeout {

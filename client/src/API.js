@@ -18,11 +18,11 @@ class API {
     })
   }
 
-  register({ username, password }) {
+  register({ username, password, nome, CPF, unidade }) {
     return axios({
       url: this.getUrl('/auth/register'),
       method: 'post',
-      data: { username, password }
+      data: { username, password, nome, CPF, unidade }
     })
   }
 
