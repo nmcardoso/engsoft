@@ -8,6 +8,7 @@ import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Dashboard from './Dashboard'
+import Principal from './Principal'
 
 function App() {
   return (
@@ -24,9 +25,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <Dashboard />
-          <Route path="/principal">
-            <Principal />
-          </Route>
+        </Route>
+        <Route path="/principal">
+          <Principal />
         </Route>
       </Switch>
     </Router>
