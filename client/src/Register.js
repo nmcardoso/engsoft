@@ -3,8 +3,11 @@ import API from './API'
 import './Login.css'
 
 function Register() {
+  const [name, setName] = useState('')
+  const [CPF, setCPF] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [unidade, setUnidade] = useState('')
   const [message, setMessage] = useState({})
   const [loading, isLoading] = useState(false)
 
@@ -52,6 +55,35 @@ function Register() {
           ) : false}
 
           <form onSubmit={handleSubmit}>
+            {/* campo de nome */}
+            <div className="form-group">
+              <label
+                className="fw-bolder"
+                htmlFor="exampleInputName">
+                Nome
+              </label>
+              <input
+                type="text"
+                className="form-control form-control-lg"
+                id="exampleInputName"
+                placeholder=""
+                onChange={e => setName(e.target.value)} />
+            </div>
+            {/* campo de CPF */}
+            <div className="form-group">
+              <label
+                className="fw-bolder"
+                htmlFor="exampleInputCPF">
+                CPF
+              </label>
+              <input
+                type="text"
+                className="form-control form-control-lg"
+                id="exampleInputCPF"
+                placeholder=""
+                onChange={e => setName(e.target.value)} />
+            </div>
+            {/* campo do usuario */}
             <div className="form-group">
               <label
                 className="fw-bolder"
@@ -66,6 +98,7 @@ function Register() {
                 placeholder=""
                 onChange={e => setUsername(e.target.value)} />
             </div>
+            {/* campo de senha */}
             <div className="form-group">
               <div className="d-flex justify-content-between">
                 <label
@@ -82,10 +115,25 @@ function Register() {
                 size="30"
                 onChange={e => setPassword(e.target.value)} />
             </div>
+            {/* campo de unidade */}
+            <div className="form-group">
+              <label
+                className="fw-bolder"
+                htmlFor="exampleInputUnidade">
+                Unidade
+              </label>
+              <input
+                type="text"
+                className="form-control form-control-lg"
+                id="exampleInputName"
+                placeholder=""
+                onChange={e => setName(e.target.value)} />
+            </div>
+            
 
             {loading ? (
               <button
-                className="btn btn-success fw-bold py-2 px-3 mx-3"
+                className="btn btn-success fw-bold py-2 px-3 mx-4"
                 type="submit"
                 disabled>
                 <span
@@ -97,7 +145,7 @@ function Register() {
             ) : (
               <button
                 type="submit"
-                className="btn btn-success btn-block fw-bold py-2 px-3 mx-3">
+                className="btn btn-success btn-lg btn-block fw-bold py-3 px-3 mx-1 my-3">
                 Cadastrar
               </button>
             )}

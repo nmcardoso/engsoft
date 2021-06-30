@@ -1,0 +1,22 @@
+.fadeOut{
+    font-size: 30px;
+    animation-name: fadeout;
+    animation-delay: 1s;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+}
+.fadeIn{
+    animation: fadein 1;
+    animation-delay: 1;
+
+}
+
+@keyframes fadeout {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes fadein {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
