@@ -23,10 +23,6 @@ function App() {
           <Register />
         </Route>
         <Route path="/dashboard">
-          <Dashboard />
-          <Route path="/principal">
-            <Principal />
-          </Route>
         </Route>
       </Switch>
     </Router>
