@@ -10,7 +10,6 @@ const getTableKind = async (client, table) => {
   // table: r; view: v; materialized_view: m
   const query = "SELECT relkind FROM pg_class WHERE relname = $1"
   const resp = await client.query(query, [table])
-  console.log('aqui')
   return resp?.rows?.[0]?.relkind
 }
 
