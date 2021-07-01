@@ -1,14 +1,11 @@
-if (process.env.NODE_ENV === 'dev') {
-  require('dotenv').config({ path: 'config/dev.env' })
-} else if (process.env.NODE_ENV === 'production') {
-  require('dotenv').config({ path: 'config/prod.env' })
-}
-
 const express = require('express')
 const cors = require('cors')
 
 const authRouter = require('./routes/auth')
 const exportRouter = require('./routes/export')
+const load_env = require('./utils/load_env')
+
+load_env()
 
 const app = express()
 
