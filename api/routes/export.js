@@ -6,17 +6,40 @@ const convertCsvToXlsx = require('@aternus/csv-to-xlsx')
 
 const router = express.Router()
 
+const getTableKind = async (client, table) => {
+  // table: r; view: v; materialized_view: m
+  const query = `SELECT relkind FROM pg_class WHERE relname = '${table}'`
+  const resp = await client.query(query)
+  return resp?.rows?.[0]?.relkind
+}
+
 router.get('/:table.csv', async (req, res) => {
   const pool = new Pool({
     connectionString: process.env.PG_CONNECTION
   })
   const client = await pool.connect()
-  const q = `COPY (SELECT * FROM ${req.params.table}) TO STDOUT DELIMITER ',' CSV HEADER`
-  const dataStream = client.query(copyTo(q))
-  dataStream.pipe(res)
+  const kind = await getTableKind(client, req.params.table)
+  console.log(kind)
+
+  let query
+  if (kind === 'r') {
+    query = `COPY ${req.params.table} TO STDOUT DELIMITER ',' CSV HEADER`
+  } else if (kind === 'v' || kind === 'm') {
+    query = `COPY (SELECT * FROM ${req.params.table}) TO STDOUT DELIMITER ',' CSV HEADER`
+  } else {
+    return res.sendStatus(404)
+  }
+
+  const dataStream = client.query(copyTo(query))
   dataStream.on('close', () => {
     client.end()
   })
+  dataStream.on('error', (err) => {
+    client.end()
+    console.log(err)
+    res.sendStatus(404)
+  })
+  dataStream.pipe(res)
 })
 
 
