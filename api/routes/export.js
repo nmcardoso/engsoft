@@ -76,12 +76,12 @@ router.get('/dump.sql', (req, res) => {
   exec(`pg_dump ${process.env.PG_CONNECTION} -f /tmp/dump.sql`, (error, stdout, stderr) => {
     if (error) {
       console.log(error)
-      return
+      return res.sendStatus(404)
     }
 
     if (stderr) {
       console.log(stderr)
-      return
+      return res.sendStatus(404)
     }
 
     console.log(stdout)
@@ -95,12 +95,12 @@ router.get('/schema.sql', (req, res) => {
   exec(`pg_dump ${process.env.PG_CONNECTION} --schema-only -f /tmp/schema.sql`, (error, stdout, stderr) => {
     if (error) {
       console.log(error)
-      return
+      return res.sendStatus(404)
     }
 
     if (stderr) {
       console.log(stderr)
-      return
+      return res.sendStatus(404)
     }
 
     console.log(stdout)
