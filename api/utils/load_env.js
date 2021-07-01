@@ -1,4 +1,4 @@
-function load() {
+function load_env() {
   if (process.env.NODE_ENV === 'dev') {
     require('dotenv').config({ path: 'config/dev.env' })
   } else if (process.env.NODE_ENV === 'production') {
@@ -14,4 +14,4 @@ function load() {
   process.env.PG_DB = match[5]
 }
 
-module.exports = load
+module.exports = load_env
