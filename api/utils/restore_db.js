@@ -5,14 +5,31 @@ load_env()
 
 process.env.PGPASSWORD = process.env.PG_PASS
 
-command = [
-  'pg_restore',
+// const command = [
+//   `dropdb ${process.env.PG_DB} &&`,
+//   `createdb ${process.env.PG_DB} &&`,
+//   'pg_restore',
+//   `-U ${process.env.PG_USER}`,
+//   '-w',
+//   `-h ${process.env.PG_HOST}`,
+//   `-p ${process.env.PG_PORT}`,
+//   `-d ${process.env.PG_DB}`,
+//   '-c',
+//   '-1',
+//   '--no-owner',
+//   'sql/database.psql'
+// ]
+
+const command = [
+  `dropdb ${process.env.PG_DB} &&`,
+  `createdb ${process.env.PG_DB} &&`,
+  'psql',
   `-U ${process.env.PG_USER}`,
-  '-wc',
+  '-w',
   `-h ${process.env.PG_HOST}`,
   `-p ${process.env.PG_PORT}`,
   `-d ${process.env.PG_DB}`,
-  'sql/database.psql'
+  '< sql/database.sql'
 ]
 exec(command.join(' '), (err, stdout, stderr) => {
   if (err) {
