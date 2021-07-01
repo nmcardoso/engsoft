@@ -11,6 +11,7 @@ models.forEach(model => {
 
 async function sync() {
   await db.sync({ force: true })
+  console.log('>>> Banco de dados sincronizado com sucesso!!')
 }
 
 sync()
