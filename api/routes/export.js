@@ -112,6 +112,26 @@ router.get('/database.sql', (req, res) => {
 })
 
 
+router.get('/database-data.sql', (req, res) => {
+  const command = `pg_dump ${process.env.PG_CONNECTION} --section=data -c -f /tmp/database-data.sql`
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.log(error)
+      return res.sendStatus(404)
+    }
+
+    if (stderr) {
+      console.log(stderr)
+      return res.sendStatus(404)
+    }
+
+    console.log(stdout)
+
+    res.sendFile('/tmp/database-data.sql')
+  })
+})
+
+
 router.get('/schema.psql', (req, res) => {
   const command = `pg_dump ${process.env.PG_CONNECTION} --schema-only -F c -f /tmp/schema.psql`
   exec(command, (error, stdout, stderr) => {
