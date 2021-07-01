@@ -19,7 +19,6 @@ router.get('/:table.csv', async (req, res) => {
   })
   const client = await pool.connect()
   const kind = await getTableKind(client, req.params.table)
-  console.log(kind)
 
   let query
   if (kind === 'r') {
@@ -48,12 +47,28 @@ router.get('/:table.xlsx', async (req, res) => {
     connectionString: process.env.PG_CONNECTION
   })
   const client = await pool.connect()
-  const q = `COPY ${req.params.table} TO '/tmp/${req.params.table}.csv' DELIMITER ',' CSV HEADER`
-  await client.query(q)
+  const kind = await getTableKind(client, req.params.table)
+
+  let query
+  if (kind === 'r') {
+    query = `COPY ${req.params.table} TO '/tmp/${req.params.table}.csv' DELIMITER ',' CSV HEADER`
+  } else if (kind === 'v' || kind === 'm') {
+    query = `COPY (SELECT * FROM ${req.params.table}) TO '/tmp/${req.params.table}.csv' DELIMITER ',' CSV HEADER`
+  } else {
+    return res.sendStatus(404)
+  }
+
+  await client.query(query)
   client.release()
   client.end()
-  convertCsvToXlsx(`/tmp/${req.params.table}.csv`, `/tmp/${req.params.table}.xlsx`)
-  res.sendFile(`/tmp/${req.params.table}.xlsx`)
+
+  try {
+    convertCsvToXlsx(`/tmp/${req.params.table}.csv`, `/tmp/${req.params.table}.xlsx`)
+    res.sendFile(`/tmp/${req.params.table}.xlsx`)
+  } catch (e) {
+    console.log(e)
+    res.sendStatus(404)
+  }
 })
 
 
