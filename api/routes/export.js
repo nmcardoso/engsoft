@@ -73,7 +73,7 @@ router.get('/:table.xlsx', async (req, res) => {
 
 
 router.get('/database.psql', (req, res) => {
-  const command = `pg_dump ${process.env.PG_CONNECTION} -F c -f /tmp/database.psql`
+  const command = `pg_dump ${process.env.PG_CONNECTION} -F c -c -f /tmp/database.psql`
   exec(command, (error, stdout, stderr) => {
     if (error) {
       console.log(error)
