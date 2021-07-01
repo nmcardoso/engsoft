@@ -72,8 +72,9 @@ router.get('/:table.xlsx', async (req, res) => {
 })
 
 
-router.get('/dump.sql', (req, res) => {
-  exec(`pg_dump ${process.env.PG_CONNECTION} -f /tmp/dump.sql`, (error, stdout, stderr) => {
+router.get('/database.psql', (req, res) => {
+  const command = `pg_dump ${process.env.PG_CONNECTION} -F c -f /tmp/database.psql`
+  exec(command, (error, stdout, stderr) => {
     if (error) {
       console.log(error)
       return res.sendStatus(404)
@@ -86,13 +87,14 @@ router.get('/dump.sql', (req, res) => {
 
     console.log(stdout)
 
-    res.sendFile('/tmp/dump.sql')
+    res.sendFile('/tmp/database.psql')
   })
 })
 
 
-router.get('/schema.sql', (req, res) => {
-  exec(`pg_dump ${process.env.PG_CONNECTION} --schema-only -f /tmp/schema.sql`, (error, stdout, stderr) => {
+router.get('/schema.psql', (req, res) => {
+  const command = `pg_dump ${process.env.PG_CONNECTION} --schema-only -F c -f /tmp/schema.psql`
+  exec(command, (error, stdout, stderr) => {
     if (error) {
       console.log(error)
       return res.sendStatus(404)
@@ -105,7 +107,7 @@ router.get('/schema.sql', (req, res) => {
 
     console.log(stdout)
 
-    res.sendFile('/tmp/schema.sql')
+    res.sendFile('/tmp/schema.psql')
   })
 })
 
