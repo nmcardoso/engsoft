@@ -11,21 +11,12 @@ router.get('/:table.csv', async (req, res) => {
     connectionString: process.env.PG_CONNECTION
   })
   const client = await pool.connect()
-  try {
-    const q = `COPY ${req.params.table} TO STDOUT DELIMITER ',' CSV HEADER`
-    const dataStream = client.query(copyTo(q))
-    dataStream.pipe(res)
-    dataStream.on('close', () => {
-      client.end()
-    })
-  } catch (e) {
-    const q = `COPY (SELECT * FROM ${req.params.table}) TO STDOUT DELIMITER ',' CSV HEADER`
-    const dataStream = client.query(copyTo(q))
-    dataStream.pipe(res)
-    dataStream.on('close', () => {
-      client.end()
-    })
-  }
+  const q = `COPY (SELECT * FROM ${req.params.table}) TO STDOUT DELIMITER ',' CSV HEADER`
+  const dataStream = client.query(copyTo(q))
+  dataStream.pipe(res)
+  dataStream.on('close', () => {
+    client.end()
+  })
 })
 
 
