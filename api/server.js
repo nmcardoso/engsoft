@@ -1,9 +1,10 @@
 const express = require('express')
 const cors = require('cors')
 
+const load_env = require('./utils/load_env')
 const authRouter = require('./routes/auth')
 const exportRouter = require('./routes/export')
-const load_env = require('./utils/load_env')
+const unidadeSaudeRouter = require('./routes/unidade_saude')
 
 load_env()
 
@@ -14,6 +15,7 @@ app.use(cors())
 
 app.use('/auth', authRouter)
 app.use('/export', exportRouter)
+app.use('/unidade_saude', unidadeSaudeRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
