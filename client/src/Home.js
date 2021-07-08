@@ -19,8 +19,12 @@ function Home() {
               className="btn btn-success btn-block fw-bold">
               Cadastro
             </Link>
+            <Link
+              to="powerbi"
+              className="btn btn-success btn-block fw-bold">
+              PowerBI
+            </Link>
           </div>
-
         </div>
       </div>
     </>

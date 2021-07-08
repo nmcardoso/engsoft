@@ -8,7 +8,7 @@ import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Dashboard from './Dashboard'
-import Principal from './Principal'
+import PowerBI from './PowerBI'
 
 function App() {
   return (
@@ -25,6 +25,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route path="/powerbi">
+          <PowerBI />
         </Route>
       </Switch>
     </Router>
