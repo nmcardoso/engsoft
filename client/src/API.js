@@ -35,6 +35,13 @@ class API {
       }
     })
   }
+
+  getUnidadeSaude() {
+    return axios({
+      url: this.getUrl('/unidade_saude/all'),
+      method: 'get'
+    })
+  }
 }
 
 export default API

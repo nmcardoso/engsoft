@@ -1,13 +1,12 @@
-if (process.env.NODE_ENV === 'dev') {
-  require('dotenv').config({ path: 'config/dev.env' })
-} else if (process.env.NODE_ENV === 'production') {
-  require('dotenv').config({ path: 'config/prod.env' })
-}
-
 const express = require('express')
 const cors = require('cors')
 
+const load_env = require('./utils/load_env')
 const authRouter = require('./routes/auth')
+const exportRouter = require('./routes/export')
+const unidadeSaudeRouter = require('./routes/unidade_saude')
+
+load_env()
 
 const app = express()
 
@@ -15,12 +14,14 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/auth', authRouter)
+app.use('/export', exportRouter)
+app.use('/unidade_saude', unidadeSaudeRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get("/health", (req, res) => {
+app.get('/health', (req, res) => {
   res.sendStatus(200)
   return
 })
