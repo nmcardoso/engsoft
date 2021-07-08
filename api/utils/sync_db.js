@@ -4,6 +4,11 @@ const { exec } = require('child_process')
 
 const db = require('../config/database')
 
+async function updateSeries(tables) {
+  tables.forEach(async table => {
+    await db.query(`SELECT setval('${table}_id_seq', (SELECT MAX(id) FROM "${table}"))`)
+  })
+}
 
 async function sync() {
   // load pg connection password
@@ -41,7 +46,7 @@ async function sync() {
     '--no-owner',
     'sql/database-data.psql'
   ]
-  exec(command.join(' '), (err, stdout, stderr) => {
+  exec(command.join(' '), async (err, stdout, stderr) => {
     if (err) {
       console.log(err)
       return
@@ -51,6 +56,12 @@ async function sync() {
       console.log(stderr)
       return
     }
+
+    console.log('\n')
+    console.log(models)
+    console.log('\n')
+
+    await updateSeries(models.map(model => model.slice(0, -3).toLowerCase()))
 
     console.log(stdout)
     console.log('>> Banco Sincronizado com Sucesso')
