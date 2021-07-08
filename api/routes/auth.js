@@ -48,7 +48,10 @@ router.post('/register', async (req, res) => {
 
   const newUser = await Login.create({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    nome: req.body.nome,
+    CPF: req.body.CPF,
+    unidade: req.body.unidade,
   })
 
   res.json({

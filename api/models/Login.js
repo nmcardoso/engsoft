@@ -15,6 +15,18 @@ const Login = db.define('login', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  CPF: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  unidade: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: true
