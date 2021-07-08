@@ -19,12 +19,12 @@ const Login = db.define('login', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  CPF: {
+  cpf: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  unidade: {
-    type: DataTypes.STRING,
+  id_unidade_saude: {
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   createdAt: {
