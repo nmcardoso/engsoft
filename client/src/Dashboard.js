@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import API from './API'
+import './Dashboard.css'
 
 function Dashboard() {
   const [firstLoad, isFirstLoad] = useState(true)
@@ -29,7 +30,7 @@ function Dashboard() {
           <span className="visually-hidden">Carregando...</span>
         </div>
       ) : (
-        <div style={{ fontSize: '30px' }}>
+        <div className='fadeOut'>
           Bem Vindo, <b>{user.name}</b>
         </div>
       )}
