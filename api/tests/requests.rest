@@ -32,6 +32,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iL
 
 ###
 
+
+POST http://localhost:8080/formulario/
+Content-Type: application/json
+
+{
+  "id_unidade_saude": 1,
+  "cpf": "112233445566",
+  "telefone": "66778899",
+  "nome": "Natanael",
+  "data_nascimento": "2000-02-17",
+  "laboratorio": "Astra",
+  "lote": 11,
+  "data_vacinacao": "2021-04-04 00:00:00",
+  "dose": 2
+}
+
+
+###
+
+
+
 POST https://engsoft-production-nmcardoso.cloud.okteto.net/auth/login
 Content-Type: application/json
 
