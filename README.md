@@ -7,3 +7,4 @@
   <img src="img/paleta.png" width="100%" />
 </p>
 
+<p> #2CAB7C #A9DECA #2B7930 #85517F #902CAB </p> 
