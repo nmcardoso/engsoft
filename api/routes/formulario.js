@@ -16,7 +16,6 @@ router.post('/', async (req, res) => {
     data_vacinacao: new Date(data.data_vacinacao),
     dose: data.dose
   })
-  console.log(new Date(data.data_nascimento))
 
   try {
     await form.save()
