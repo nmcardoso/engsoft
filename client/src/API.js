@@ -36,10 +36,15 @@ class API {
     })
   }
 
-  getUnidadeSaude() {
+  getUnidadeSaude({ campos }) {
+    const params = campos ? { campos: campos.join(',') } : {}
     return axios({
-      url: this.getUrl('/unidade_saude/all'),
-      method: 'get'
+      url: this.getUrl('/unidade_saude'),
+      method: 'get',
+      params
+    })
+  }
+
     })
   }
 }
