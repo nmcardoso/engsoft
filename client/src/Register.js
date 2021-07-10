@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import API from './API'
 import './Login.css'
 
@@ -10,6 +10,7 @@ function Register() {
   const [unidade, setUnidade] = useState('')
   const [message, setMessage] = useState({})
   const [loading, isLoading] = useState(false)
+  const [listaUnidades, setListaUnidades] = useState([])
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -30,6 +31,12 @@ function Register() {
         isLoading(false)
       })
   }
+
+  useEffect(async () => {
+    const api = new API()
+    const unidades = await api.getUnidadeSaude({ campos: ['id', 'nome'] })
+    setListaUnidades(unidades.data)
+  }, [])
 
   return (
     <div className="limiter">
@@ -122,18 +129,19 @@ function Register() {
                 htmlFor="exampleInputUnidade">
                 Unidade
               </label>
-             
-              <select 
-                className="form-control form-control-lg" 
+
+              <select
+                className="form-select"
                 onChange={e => setUnidade(e.target.value)}
+                disabled={listaUnidades.length === 0}
+                defaultValue="-1"
               >
-                <option>Unidade 1</option>
-                <option>Unidade 2</option>
-                <option>Unidade 3</option>                
+                {listaUnidades.length === 0 ? <option value="-1">Carregando...</option> : null}
+                {listaUnidades.map(u => <option key={u.id} value={u.id}>{u.nome}</option>)}
               </select>
-              
+
             </div>
-            
+
 
             {loading ? (
               <button
