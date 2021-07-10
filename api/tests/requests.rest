@@ -52,6 +52,12 @@ Content-Type: application/json
 ###
 
 
+GET http://localhost:8080/unidade_saude/?campos=nome,id
+
+
+###
+
+
 
 POST https://engsoft-production-nmcardoso.cloud.okteto.net/auth/login
 Content-Type: application/json
