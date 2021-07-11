@@ -13,7 +13,10 @@ Content-Type: application/json
 
 {
   "username": "natan",
-  "password": "natan2"
+  "password": "natan2",
+  "nome": "Natan",
+  "cpf": "000",
+  "id_unidade_saude": 1
 }
 
 
