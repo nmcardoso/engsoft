@@ -18,11 +18,11 @@ class API {
     })
   }
 
-  register({ username, password, nome, CPF, unidade }) {
+  register({ username, password, nome, cpf, idUnidade }) {
     return axios({
       url: this.getUrl('/auth/register'),
       method: 'post',
-      data: { username, password, nome, CPF, unidade }
+      data: { username, password, nome, cpf, id_unidade_saude: idUnidade }
     })
   }
 
@@ -45,6 +45,14 @@ class API {
     })
   }
 
+  postFormulario(data) {
+    return axios({
+      url: this.getUrl('/formulario'),
+      method: 'post',
+      data,
+      headers: {
+        Authorization: ``
+      }
     })
   }
 }

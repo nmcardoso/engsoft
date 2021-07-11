@@ -7,7 +7,7 @@ function Register() {
   const [CPF, setCPF] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [unidade, setUnidade] = useState('')
+  const [idUnidade, setIdUnidade] = useState(null)
   const [message, setMessage] = useState({})
   const [loading, isLoading] = useState(false)
   const [listaUnidades, setListaUnidades] = useState([])
@@ -16,7 +16,7 @@ function Register() {
     e.preventDefault()
     isLoading(true)
     const api = new API()
-    api.register({ username, password, nome, CPF, unidade })
+    api.register({ username, password, nome, CPF, idUnidade })
       .then(resp => {
         if (resp.data.success) {
           setMessage({ value: resp.data.message, type: 'success' })
@@ -132,7 +132,7 @@ function Register() {
 
               <select
                 className="form-select"
-                onChange={e => setUnidade(e.target.value)}
+                onChange={e => setIdUnidade(parseInt(e.target.value))}
                 disabled={listaUnidades.length === 0}
                 defaultValue="-1"
               >
