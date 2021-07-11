@@ -46,13 +46,17 @@ router.post('/register', async (req, res) => {
     })
   }
 
-  const newUser = await Login.create({
-    username: req.body.username,
-    password: req.body.password,
-    nome: req.body.nome,
-    CPF: req.body.CPF,
-    unidade: req.body.unidade,
-  })
+  try {
+    await Login.create({
+      username: req.body.username,
+      password: req.body.password,
+      nome: req.body.nome,
+      cpf: req.body.cpf,
+      id_unidade_saude: req.body.id_unidade_saude,
+    })
+  } catch (err) {
+    console.log(err)
+  }
 
   res.json({
     success: true,
