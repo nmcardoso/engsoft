@@ -1,7 +1,0 @@
-apiVersion: v2
-name: engsoft-production
-description: engsoft-production
-type: application
-version: 0.1.0
-appVersion: 1.0.0
-icon: https://raw.githubusercontent.com/nmcardoso/engsoft/main/chart/node-icon.png

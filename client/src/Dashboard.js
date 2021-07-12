@@ -20,6 +20,8 @@ function Dashboard() {
     })
   }, [firstLoad])
 
+  /* pagina do dash */
+
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 vw-100">
       {user && Object.keys(user).length === 0 && user.constructor === Object ? (
@@ -30,9 +32,18 @@ function Dashboard() {
           <span className="visually-hidden">Carregando...</span>
         </div>
       ) : (
-        <div className='fadeOut'>
+        <div className='wrapper'>
+          <div className='fadeOut'>
           Bem Vindo, <b>{user.name}</b>
         </div>
+        <div className="fadeIn">
+          <div className="d-block my-3">
+            <button className='btn btn-outline-light fw-bold py-2 px-3 rounded-0'>Formulário 🖊</button>
+            <button className='btn btn-outline-light fw-bold py-2 px-3 rounded-0'>Análise 📊</button>
+            <button className='btn btn-outline-light fw-bold py-2 px-3 rounded-0'>Feedback 🔁</button>
+          </div>
+        </div>
+      </div>
       )}
     </div>
   )

@@ -1,8 +1,0 @@
-name: api-prod
-command: ["bash"]
-forward: 
-  - 8080:8080
-sync:
-  - .:/src
-persistentVolume:
-  enabled: false

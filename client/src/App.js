@@ -15,19 +15,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/dashboard">
           <Dashboard />
-        </Route>
-        <Route path="/powerbi">
-          <PowerBI />
         </Route>
       </Switch>
     </Router>

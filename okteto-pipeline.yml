@@ -1,8 +1,0 @@
-icon: https://raw.githubusercontent.com/nmcardoso/engsoft/main/chart/node-icon.png
-deploy:
-  - envsubst < api/config/template.env > api/config/prod.env
-  - okteto build -t okteto.dev/api:${OKTETO_GIT_COMMIT} api
-  - helm repo update
-  - helm upgrade --install engsoft-production chart --set tag=${OKTETO_GIT_COMMIT}
-devs:
-  - api/okteto.yml
