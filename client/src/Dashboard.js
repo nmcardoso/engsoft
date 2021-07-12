@@ -9,7 +9,7 @@ function Dashboard() {
   const [user, setUser] = useState({})
   const history = useHistory
 
-  useEffect(() => {
+  /* useEffect(() => {
     const api = new API()
     console.log(localStorage.getItem('token'))
     api.validateToken(localStorage.getItem('token')).then(resp => {
@@ -18,33 +18,31 @@ function Dashboard() {
     }).catch(() => {
       history.push('/login')
     })
-  }, [firstLoad])
+  }, [firstLoad]) */
 
   /* pagina do dash */
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 vw-100">
-      {user && Object.keys(user).length === 0 && user.constructor === Object ? (
-        <div
-          role="status"
-          className="spinner-grow text-success"
-          style={{ width: '3rem', height: '3rem' }}>
-          <span className="visually-hidden">Carregando...</span>
-        </div>
-      ) : (
-        <div className='wrapper'>
-          <div className='fadeOut'>
-          Bem Vindo, <b>{user.name}</b>
+      <div className='wrapper'>
+        <div className='fadeOut'>
+          Bem Vindo, <b>ablue</b>
         </div>
         <div className="fadeIn">
-          <div className="d-block my-3">
-            <button className='btn btn-outline-light fw-bold py-2 px-3 rounded-0'>Formulário 🖊</button>
-            <button className='btn btn-outline-light fw-bold py-2 px-3 rounded-0'>Análise 📊</button>
-            <button className='btn btn-outline-light fw-bold py-2 px-3 rounded-0'>Feedback 🔁</button>
+          <div className="buttonContainer d-block my-3">
+            <button className='btn btn-outline-light btn-lg fw-bold py-4 px-3 rounded-0'>Formulário 🖊</button>
+            <button className='btn btn-outline-light btn-lg fw-bold py-4 px-3 rounded-0'>Análise 📊</button>
+            <button className='btn btn-outline-light btn-lg fw-bold py-4 px-3 rounded-0'>Feedback 🔁</button>
           </div>
+          <form>
+            <div className='form-group'>
+              <label htmlFor="inputNome">Nome</label>
+              <input type="text" className="form-control" id='inputNome' placeholder='Nome do paciente'/>
+            </div>
+          </form>
+
         </div>
       </div>
-      )}
     </div>
   )
 }
