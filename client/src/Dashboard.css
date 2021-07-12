@@ -17,14 +17,19 @@
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
     font-size: 30px;
-    box-shadow: 0 0 30px rgba(48, 48, 48, 0.7);
+    box-shadow: 0 0 15px rgba(48, 48, 48, 1);
     
     /* posiciona a div adequadamente */
     height: 96vh;
     width: 98vw;
     position: absolute;
     top: 2vh; left: 1vw;
-    background: rgba(43, 121, 48, 0.8);
+    /* cor solida */
+    /* background: rgba(43, 121, 48, 0.8); */
+
+    /* gradiente */
+    background-image: linear-gradient(to top right, rgba(35, 77, 38, 0.83), rgba(43, 121, 48, 0.87));
+
 
     /* ajusta texto */
     /* padding: 2vh 1vw 1vh; */
