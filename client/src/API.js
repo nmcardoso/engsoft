@@ -1,59 +1,61 @@
 import axios from 'axios'
 
+let instance = null
+
 class API {
   constructor() {
-    this.url = process.env.NODE_ENV === 'production' ?
+    if (!instance) {
+      instance = this
+    }
+
+    const url = process.env.NODE_ENV === 'production' ?
       'https://engsoft-production-nmcardoso.cloud.okteto.net' : 'http://localhost:8080'
+
+    this.client = axios.create({
+      baseURL: url
+    })
+
+    return instance
   }
 
-  getUrl(route) {
-    return this.url + route
+  setAuthToken(token) {
+    this.client.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
+
+  removeAuthToken() {
+    this.client.defaults.headers.common['Authorization'] = undefined
   }
 
   login({ username, password }) {
-    return axios({
-      url: this.getUrl('/auth/login'),
-      method: 'post',
-      data: { username, password }
+    return this.client.post('/auth/login', {
+      username,
+      password
     })
   }
 
   register({ username, password, nome, cpf, idUnidade }) {
-    return axios({
-      url: this.getUrl('/auth/register'),
-      method: 'post',
-      data: { username, password, nome, cpf, id_unidade_saude: idUnidade }
+    return this.client.post('/auth/register', {
+      username,
+      password,
+      nome,
+      cpf,
+      id_unidade_saude: idUnidade
     })
   }
 
-  validateToken(token) {
-    return axios({
-      url: this.getUrl('/auth/validate'),
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+  validateToken() {
+    return this.client.get('/auth/validate')
   }
 
   getUnidadeSaude({ campos }) {
     const params = campos ? { campos: campos.join(',') } : {}
-    return axios({
-      url: this.getUrl('/unidade_saude'),
-      method: 'get',
+    return this.client.get('/unidade_saude', {
       params
     })
   }
 
   postFormulario(data) {
-    return axios({
-      url: this.getUrl('/formulario'),
-      method: 'post',
-      data,
-      headers: {
-        Authorization: ``
-      }
-    })
+    return this.client.post('/formulario', data)
   }
 }
 
