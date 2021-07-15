@@ -5,7 +5,7 @@ import API from './API'
 import './Dashboard.css'
 
 function Dashboard() {
-  const [firstLoad, isFirstLoad] = useState(true)
+  /* const [firstLoad, isFirstLoad] = useState(true)
   const [user, setUser] = useState({})
   const history = useHistory
 
@@ -18,18 +18,19 @@ function Dashboard() {
     }).catch(() => {
       history.push('/login')
     })
-  }, [firstLoad])
+  }, [firstLoad]) */
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 vw-100">
-      {user && Object.keys(user).length === 0 && user.constructor === Object ? (
+    <div className="pageContainer">
+      <div className="zero">sadiojuisa</div>
+      {/* {user && Object.keys(user).length === 0 && user.constructor === Object ? (
         <div
           role="status"
           className="spinner-grow text-success"
           style={{ width: '3rem', height: '3rem' }}>
           <span className="visually-hidden">Carregando...</span>
         </div>
-      ) : (
+      ) : ( */}
         <>
           <div className='fadeOut'>
             Bem Vindo, <b>Usuário X</b>
@@ -65,10 +66,9 @@ function Dashboard() {
               <span class="input-group-text" id="basic-addon1">Laboratório</span>
               <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
               <ul class="dropdown-menu">
-                <li>Action</li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                <li><a class="dropdown-item" href="#">Lab3</a></li>
+                <li><a class="dropdown-item" href="#">Lab2</a></li>
+                <li><a class="dropdown-item" href="#">Lab1</a></li>
               </ul>
             </div>
 
@@ -87,9 +87,111 @@ function Dashboard() {
                 <label htmlFor="primeira_dose">2ª dose</label>
               </div>
             </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Nome da mãe</span>
+              <input type="text" class="form-control" placeholder="Nome da mãe" aria-label="Nome da mãe" aria-describedby="campo-nome-mãe"/>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Nome social</span>
+              <input type="text" class="form-control" placeholder="Nome social" aria-label="Nome social" aria-describedby="campo-nome-social"/>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Sexo</span>
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Feminino</a></li>
+                <li><a class="dropdown-item" href="#">Masculino</a></li>
+                <li><a class="dropdown-item" href="#">Não declarado</a></li>
+              </ul>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Raça/Cor/Etnia</span>
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Cor Branca</a></li>
+                <li><a class="dropdown-item" href="#">Cor Preta</a></li>
+                <li><a class="dropdown-item" href="#">Cor Parda</a></li>
+                <li><a class="dropdown-item" href="#">Cor Amarela</a></li>
+                <li><a class="dropdown-item" href="#">Indígena</a></li>
+                <li><a class="dropdown-item" href="#">Não informada</a></li>
+              </ul>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Gestante</span>
+              <div className="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" id='declaracao_gestante' aria-label="Gestante" aria-describedby="campo-gestante"/>
+              </div>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Puérpera</span>
+              <div className="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" id='declaracao_puerpera' aria-label="Puerpera" aria-describedby="campo-puerpera"/>
+              </div>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5 ">
+              <span class="input-group-text" id="basic-addon1">CEP</span>
+              <input type="text" class="form-control" placeholder="CEP" aria-label="CEP" aria-describedby="campo-cep"/>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">País Residência</span>
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">País 1</a></li>
+                <li><a class="dropdown-item" href="#">País 2</a></li>
+                <li><a class="dropdown-item" href="#">País 3</a></li>
+              </ul>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">UF</span>
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">UF 1</a></li>
+                <li><a class="dropdown-item" href="#">UF 2</a></li>
+                <li><a class="dropdown-item" href="#">UF 3</a></li>
+              </ul>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5">
+              <span class="input-group-text" id="basic-addon1">Município Residência</span>
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Rural</a></li>
+                <li><a class="dropdown-item" href="#">Urbano</a></li>
+              </ul>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5 ">
+              <span class="input-group-text" id="basic-addon1">Logradouro</span>
+              <input type="text" class="form-control" placeholder="Logradouro" aria-label="Logradouro" aria-describedby="campo-logradouro"/>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5 ">
+              <span class="input-group-text" id="basic-addon1">Número</span>
+              <input type="text" class="form-control" placeholder="Número" aria-label="Numero" aria-describedby="campo-numero"/>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5 ">
+              <span class="input-group-text" id="basic-addon1">Bairo</span>
+              <input type="text" class="form-control" placeholder="Bairro" aria-label="Bairro" aria-describedby="campo-bairro"/>
+            </div>
+
+            <div class="input-group input-group-lg mb-3 px-5 ">
+              <span class="input-group-text" id="basic-addon1">Complemento</span>
+              <input type="text" class="form-control" placeholder="Complemento" aria-label="Complemento" aria-describedby="campo-complemento"/>
+            </div>
+
           </div>
         </>
-      )}
+      {/* )} */}
     </div>
   )
 }
