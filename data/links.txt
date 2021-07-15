@@ -1,0 +1,5 @@
+CNES (Cadastro Nacional de Estabelecimentos de Saúde):
+ftp://ftp.datasus.gov.br/cnes/BASE_DE_DADOS_CNES_202106.ZIP
+
+Postos de Vacinação da Cidade de São Paulo:
+http://buscasaude.prefeitura.sp.gov.br/
