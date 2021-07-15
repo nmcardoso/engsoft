@@ -20,6 +20,30 @@ const UnidadeSaude = db.define('unidade_saude', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  pais: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  uf: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  cidade: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  bairro: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  latitude: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  longitude: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: true
