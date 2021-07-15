@@ -10,7 +10,7 @@ import Home from './Home'
 import Dashboard from './Dashboard'
 import PowerBI from './PowerBI'
 import { AuthProvider } from './AuthContext'
-import PrivateComponent from './PrivateComponent'
+import AuthRedirect from './AuthRedirect'
 
 function App() {
   return (
@@ -21,20 +21,24 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            <AuthRedirect ifLogged={true} to="/dashboard">
+              <Login />
+            </AuthRedirect>
           </Route>
           <Route path="/register">
-            <Register />
+            <AuthRedirect ifLogged={true} to="/dashboard">
+              <Register />
+            </AuthRedirect>
           </Route>
           <Route path="/dashboard">
-            <PrivateComponent>
+            <AuthRedirect ifLogged={false} to="/login">
               <Dashboard />
-            </PrivateComponent>
+            </AuthRedirect>
           </Route>
           <Route path="/powerbi">
-            <PrivateComponent>
+            <AuthRedirect ifLogged={false} to="/login">
               <PowerBI />
-            </PrivateComponent>
+            </AuthRedirect>
           </Route>
         </Switch>
       </Router>
