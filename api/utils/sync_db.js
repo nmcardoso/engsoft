@@ -4,11 +4,6 @@ const { exec } = require('child_process')
 
 const db = require('../config/database')
 
-async function updateSeries(tables) {
-  tables.forEach(async table => {
-    await db.query(`SELECT setval('${table}_id_seq', (SELECT MAX(id) FROM "${table}"))`)
-  })
-}
 
 async function sync() {
   // load pg connection password
@@ -22,17 +17,6 @@ async function sync() {
 
   // sync database with sequelize
   await db.sync({ force: true })
-
-  // fill data based on sql/database-data.sql file
-  // const command = [
-  //   'psql',
-  //   `-U ${process.env.PG_USER}`,
-  //   '-w',
-  //   `-h ${process.env.PG_HOST}`,
-  //   `-p ${process.env.PG_PORT}`,
-  //   `-d ${process.env.PG_DB}`,
-  //   `< ${path.resolve(__dirname, '../sql/database-data.sql')}`
-  // ]
 
   const command = [
     'pg_restore',
@@ -61,13 +45,15 @@ async function sync() {
     console.log(models)
     console.log('\n')
 
-    await updateSeries(models.map(model => model.slice(0, -3).toLowerCase()))
+    const tables = await db.getQueryInterface().showAllTables()
+
+    for (const table of tables) {
+      await db.query(`SELECT setval('${table}_id_seq', (SELECT MAX(id) FROM "${table}"))`)
+    }
 
     console.log(stdout)
     console.log('>> Banco Sincronizado com Sucesso')
   })
-
-  // console.log('>>> Banco de dados sincronizado com sucesso!!')
 }
 
 sync()
