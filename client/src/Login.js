@@ -48,6 +48,7 @@ function Login() {
 
           {message ? (
             <div className="alert alert-danger" style={{ width: '400px' }} role="alert">
+              <i className="bi bi-exclamation-circle me-2"></i>
               {message}
             </div>
           ) : false}
