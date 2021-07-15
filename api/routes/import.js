@@ -2,8 +2,6 @@ const fs = require('fs')
 const readline = require('readline')
 
 const express = require('express')
-const copyTo = require('pg-copy-streams').to
-const { Pool } = require('pg')
 const { exec } = require('child_process')
 const multer = require('multer')
 
@@ -24,21 +22,27 @@ const getFirstLine = async (path) => {
 }
 
 router.post('/csv/:table', upload.single('file'), async (req, res) => {
-  const pool = new Pool({
-    connectionString: process.env.PG_CONNECTION
-  })
-  const client = await pool.connect()
-
   const table = req.params.table
   const path = req.file.path
   const header = await getFirstLine(path)
 
-  const query = `COPY ${table}(${header}) FROM '${path}' DELIMITER ',' CSV HEADER;`
-  await client.query(query)
+  const command = `psql ${process.env.PG_CONNECTION} -c "\\copy ${table}(${header}) from '${path}' with (format csv, header true, delimiter ',');"`
 
-  res.send('Dados inseridos na tabela com sucesso.')
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.log(error)
+      return res.sendStatus(404)
+    }
 
-  fs.unlink(path, console.log)
+    if (stderr) {
+      console.log(stderr)
+      return res.sendStatus(404)
+    }
+
+    res.send('Dados inseridos na tabela com sucesso.')
+
+    fs.unlink(path, console.log)
+  })
 })
 
 module.exports = router
