@@ -25,10 +25,16 @@ router.post('/login', async (req, res) => {
 
   const user = { name: username }
 
-  const accessToken = jwt.sign(user, process.env.JWT_ACCESS_SECRET)
+  const token = jwt.sign(user, process.env.JWT_ACCESS_SECRET)
+
   res.json({
     success: true,
-    accessToken: accessToken
+    userInfo: {
+      username: login.username,
+      nome: login.nome,
+      idUnidadeSaude: login.id_unidade_saude
+    },
+    token
   })
 })
 
