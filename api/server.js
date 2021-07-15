@@ -4,6 +4,7 @@ const cors = require('cors')
 const load_env = require('./utils/load_env')
 const authRouter = require('./routes/auth')
 const exportRouter = require('./routes/export')
+const importRouter = require('./routes/import')
 const unidadeSaudeRouter = require('./routes/unidade_saude')
 const formularioRouter = require('./routes/formulario')
 
@@ -16,6 +17,7 @@ app.use(cors())
 
 app.use('/auth', authRouter)
 app.use('/export', exportRouter)
+app.use('/import', importRouter)
 app.use('/unidade_saude', unidadeSaudeRouter)
 app.use('/formulario', formularioRouter)
 
