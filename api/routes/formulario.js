@@ -14,7 +14,22 @@ router.post('/', async (req, res) => {
     laboratorio: data.laboratorio,
     lote: data.lote,
     data_vacinacao: new Date(data.data_vacinacao),
-    dose: data.dose
+    dose: data.dose,
+    cns: data.cns,
+    nome_mae: data.nome_mae,
+    nome_social: data.nome_social,
+    sexo: data.sexo,
+    raca: data.raca,
+    gestante: data.gestante,
+    puerpera: data.puerpera,
+    pais_residencia: data.pais_residencia,
+    zona: data.zona,
+    logradouro: data.logradouro,
+    numero: data.numero,
+    bairro: data.bairro,
+    complemento: data.complemento,
+    email: data.email,
+    cep: data.cep
   })
 
   try {

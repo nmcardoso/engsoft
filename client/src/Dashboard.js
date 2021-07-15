@@ -1,24 +1,8 @@
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-
-import API from './API'
+import { useAuth } from './AuthContext'
 import './Dashboard.css'
 
 function Dashboard() {
-  const [firstLoad, isFirstLoad] = useState(true)
-  const [user, setUser] = useState({})
-  const history = useHistory
-
-  useEffect(() => {
-    const api = new API()
-    console.log(localStorage.getItem('token'))
-    api.validateToken(localStorage.getItem('token')).then(resp => {
-      setUser({ name: resp.data.name })
-      isFirstLoad(false)
-    }).catch(() => {
-      history.push('/login')
-    })
-  }, [firstLoad])
+  const { user } = useAuth()
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 vw-100">
@@ -32,7 +16,7 @@ function Dashboard() {
       ) : (
         <>
           <div className='fadeOut'>
-            Bem Vindo, <b>Usuário X</b>
+            Bem Vindo, <b>Usuário {user.nome}</b>
           </div>
           <div className="fadeIn">
             <div className="buttonContainer d-block my-3">
@@ -43,22 +27,22 @@ function Dashboard() {
 
             <div class="input-group input-group-lg mb-3 px-5 ">
               <span class="input-group-text" id="basic-addon1">Nome Paciente</span>
-              <input type="text" class="form-control" placeholder="Nome paciente" aria-label="Nome" aria-describedby="campo-nome"/>
+              <input type="text" class="form-control" placeholder="Nome paciente" aria-label="Nome" aria-describedby="campo-nome" />
             </div>
 
             <div class="input-group input-group-lg mb-3 px-5">
               <span class="input-group-text" id="basic-addon1">Data de nascimento</span>
-              <input type="date" class="form-control" placeholder="data" aria-label="Data de nascimento" aria-describedby="campo-data"/>
+              <input type="date" class="form-control" placeholder="data" aria-label="Data de nascimento" aria-describedby="campo-data" />
             </div>
 
             <div class="input-group input-group-lg mb-3 px-5">
               <span class="input-group-text" id="basic-addon1">CPF</span>
-              <input type="text" class="form-control" placeholder="CPF" aria-label="Número CPF" aria-describedby="campo-cpf"/>
+              <input type="text" class="form-control" placeholder="CPF" aria-label="Número CPF" aria-describedby="campo-cpf" />
             </div>
 
             <div class="input-group input-group-lg mb-3 px-5">
               <span class="input-group-text" id="basic-addon1">Telefone com DDD</span>
-              <input type="text" class="form-control" placeholder="Tel" aria-label="Telefone" aria-describedby="campo-telefone"/>
+              <input type="text" class="form-control" placeholder="Tel" aria-label="Telefone" aria-describedby="campo-telefone" />
             </div>
 
             <div class="input-group input-group-lg mb-3 px-5">
@@ -74,16 +58,16 @@ function Dashboard() {
 
             <div class="input-group input-group-lg mb-3 px-5">
               <span class="input-group-text" id="basic-addon1">Lote</span>
-              <input type="text" class="form-control" placeholder="Lote" aria-label="Lote" aria-describedby="campo-lote"/>
+              <input type="text" class="form-control" placeholder="Lote" aria-label="Lote" aria-describedby="campo-lote" />
             </div>
 
             <div class="input-group input-group-lg mb-3 px-5">
               <span class="input-group-text" id="basic-addon1">Dose</span>
               <div className="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" id='primeira_dose' aria-label="Dose" aria-describedby="campo-dose"/>
+                <input class="form-check-input mt-0" type="checkbox" id='primeira_dose' aria-label="Dose" aria-describedby="campo-dose" />
                 <label htmlFor="primeira_dose">1ª dose</label>
-                
-                <input class="form-check-input mt-0 mx-3" type="checkbox" id='primeira_dose' aria-label="Dose" aria-describedby="campo-dose"/>
+
+                <input class="form-check-input mt-0 mx-3" type="checkbox" id='primeira_dose' aria-label="Dose" aria-describedby="campo-dose" />
                 <label htmlFor="primeira_dose">2ª dose</label>
               </div>
             </div>

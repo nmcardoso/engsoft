@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const { authenticateToken } = require('../middleware/auth')
 const Login = require('../models/Login')
+const UnidadeSaude = require('../models/UnidadeSaude')
 
 const router = express.Router()
 
@@ -13,7 +14,8 @@ router.post('/login', async (req, res) => {
     where: {
       username,
       password
-    }
+    },
+    include: UnidadeSaude
   })
 
   if (login == null) {
@@ -25,10 +27,17 @@ router.post('/login', async (req, res) => {
 
   const user = { name: username }
 
-  const accessToken = jwt.sign(user, process.env.JWT_ACCESS_SECRET)
+  const token = jwt.sign(user, process.env.JWT_ACCESS_SECRET)
+
   res.json({
     success: true,
-    accessToken: accessToken
+    userInfo: {
+      username: login.username,
+      nome: login.nome,
+      id_unidade_saude: login.id_unidade_saude,
+      unidade_saude: login.unidade_saude
+    },
+    token
   })
 })
 
@@ -56,6 +65,10 @@ router.post('/register', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
+    res.json({
+      success: false,
+      message: 'Não foi possível cadastrar o usuário'
+    })
   }
 
   res.json({

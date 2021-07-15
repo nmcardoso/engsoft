@@ -10,17 +10,17 @@ function Home() {
           <img src={logo} width="250px" />
           <div className="mt-5 d-flex justify-content-around" style={{ width: '250px' }}>
             <Link
-              to="login"
+              to="/login"
               className="btn btn-success btn-block fw-bold">
               Login
             </Link>
             <Link
-              to="register"
+              to="/register"
               className="btn btn-success btn-block fw-bold">
               Cadastro
             </Link>
             <Link
-              to="powerbi"
+              to="/powerbi"
               className="btn btn-success btn-block fw-bold">
               PowerBI
             </Link>
