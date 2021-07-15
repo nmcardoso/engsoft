@@ -1,9 +1,14 @@
+.wrapper {
+    justify-content: center;
+}
+
 .fadeOut{
     font-size: 30px;
     animation-name: fadeout;
     animation-delay: 1s;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
+    justify-content: center;
 }
 .fadeIn{
     opacity: 0;
@@ -11,14 +16,36 @@
     animation-delay: 2.4s;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
+    font-size: 30px;
+    box-shadow: 0 0 15px rgba(48, 48, 48, 1);
+    
+    /* posiciona a div adequadamente */
+    height: 96vh;
+    width: 98vw;
+    position: absolute;
+    top: 2vh; left: 1vw;
+    /* cor solida */
+    /* background: rgba(43, 121, 48, 0.8); */
+
+    /* gradiente */
+    background-image: linear-gradient(to top right, rgba(35, 77, 38, 0.83), rgba(43, 121, 48, 0.87));
+
+
+    /* ajusta texto */
+    /* padding: 2vh 1vw 1vh; */
+    text-align: center;
+    color:rgb(243, 243, 243);
+
 }
 
 @keyframes fadeout {
     0% {opacity: 1;}
-    100% {opacity: 0;}
+    100% {opacity: 0;
+          display: none;}
 }
 
 @keyframes fadein {
-    0% {opacity: 0;}
+    0% {opacity: 0;
+         display: none;}
     100% {opacity: 1;}
 }
