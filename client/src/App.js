@@ -9,9 +9,11 @@ import Register from './Register'
 import Home from './Home'
 import Dashboard from './Dashboard'
 import PowerBI from './PowerBI'
+import { AuthProvider } from './AuthContext'
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Switch>
         <Route exact path="/">
@@ -31,6 +33,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </AuthProvider>
   )
 }
 
