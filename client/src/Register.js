@@ -4,7 +4,7 @@ import './Login.css'
 
 function Register() {
   const [nome, setNome] = useState('')
-  const [CPF, setCPF] = useState('')
+  const [cpf, setCPF] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [idUnidade, setIdUnidade] = useState(null)
@@ -16,7 +16,7 @@ function Register() {
     e.preventDefault()
     isLoading(true)
     const api = new API()
-    api.register({ username, password, nome, CPF, idUnidade })
+    api.register({ username, password, nome, cpf, idUnidade })
       .then(resp => {
         if (resp.data.success) {
           setMessage({ value: resp.data.message, type: 'success' })
