@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "api/",
+			"problemMatcher": [],
+			"label": "npm: install - api",
+			"detail": "install dependencies from package"
+		}
+	]
+
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "client/",
+			"problemMatcher": [],
+			"label": "npm: install - ",
+			"detail": "install dependencies from package"
+		}
+	]
+}
