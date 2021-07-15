@@ -2,34 +2,29 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import API from './API'
+import { useAuth } from './AuthContext'
 import './Login.css'
 
 function Login() {
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const [loading, isLoading] = useState(false)
   const history = useHistory()
+  const { login, logout, user } = useAuth()
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     isLoading(true)
-    const api = new API()
-    api.login({ username, password })
-      .then(resp => {
-        if (resp.data.success) {
-          localStorage.setItem('token', resp.data.accessToken)
-          history.push('/dashboard')
-        } else {
-          setMessage(resp.data.message)
-          isLoading(false)
-        }
-      })
-      .catch(error => {
-        setMessage(error.response.data.message)
-        isLoading(false)
-      })
+
+    const resp = await login({ username, password })
+
+    if (resp.success) {
+      history.push('/dashboard')
+    } else {
+      setMessage(resp.message)
+      isLoading(false)
+    }
   }
 
   return (
@@ -48,6 +43,7 @@ function Login() {
 
           {message ? (
             <div className="alert alert-danger" style={{ width: '400px' }} role="alert">
+              <i className="bi bi-exclamation-circle me-2"></i>
               {message}
             </div>
           ) : false}
