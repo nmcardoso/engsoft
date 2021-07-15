@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const { authenticateToken } = require('../middleware/auth')
 const Login = require('../models/Login')
+const UnidadeSaude = require('../models/UnidadeSaude')
 
 const router = express.Router()
 
@@ -13,7 +14,8 @@ router.post('/login', async (req, res) => {
     where: {
       username,
       password
-    }
+    },
+    include: UnidadeSaude
   })
 
   if (login == null) {
@@ -32,7 +34,8 @@ router.post('/login', async (req, res) => {
     userInfo: {
       username: login.username,
       nome: login.nome,
-      idUnidadeSaude: login.id_unidade_saude
+      id_unidade_saude: login.id_unidade_saude,
+      unidade_saude: login.unidade_saude
     },
     token
   })
