@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
 
       setState({
         user: null,
-        session: null
+        session: { logged: false }
       })
     }
 
@@ -58,8 +58,7 @@ export function AuthProvider({ children }) {
 
     setState({
       user: null,
-      session: null,
-      status: null
+      session: { logged: false }
     })
   }
 
@@ -68,7 +67,6 @@ export function AuthProvider({ children }) {
       value={{
         user: state.user,
         session: state.session,
-        status: state.status,
         login,
         logout
       }}
