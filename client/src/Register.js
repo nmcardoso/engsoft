@@ -57,6 +57,9 @@ function Register() {
               className={message.type == 'error' ? "alert alert-danger" : "alert alert-success"}
               style={{ width: '400px' }}
               role="alert">
+              {message.type == 'error' ?
+                <i class="bi bi-exclamation-circle me-2"></i> :
+                <i class="bi bi-check-circle me-2"></i>}
               {message.value}
             </div>
           ) : false}
