@@ -42,10 +42,6 @@ const Formulario = db.define('formulario', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
-  cns: {
-    type: DataTypes.INTEGER,
-    allowNull: true
-  },
   nome_mae: {
     type: DataTypes.STRING,
     allowNull: true
@@ -68,10 +64,6 @@ const Formulario = db.define('formulario', {
   },
   puerpera: {
     type: DataTypes.BOOLEAN,
-    allowNull: true
-  },
-  pais_residencia: {
-    type: DataTypes.STRING,
     allowNull: true
   },
   uf: {
@@ -99,10 +91,6 @@ const Formulario = db.define('formulario', {
     allowNull: true
   },
   complemento: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  email: {
     type: DataTypes.STRING,
     allowNull: true
   },
