@@ -63,25 +63,6 @@ export function AuthProvider({ children }) {
     })
   }
 
-  // function setUser(user) {
-  //   const userStr = JSON.stringify(user)
-  //   localStorage.setItem('user', userStr)
-
-  //   const api = new API()
-  //   api.setAuthToken(user.token)
-
-  //   _setUser(user)
-  // }
-
-  // function removeUser() {
-  //   localStorage.removeItem('user')
-
-  //   const api = new API()
-  //   api.removeAuthToken()
-
-  //   _setUser(null)
-  // }
-
   return (
     <AuthContext.Provider
       value={{
