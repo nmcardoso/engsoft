@@ -16,11 +16,11 @@ const UnidadeSaude = db.define('unidade_saude', {
     type: DataTypes.STRING,
     allowNull: true
   },
-  cep: {
-    type: DataTypes.STRING,
+  numero: {
+    type: DataTypes.INTEGER,
     allowNull: true
   },
-  pais: {
+  cep: {
     type: DataTypes.STRING,
     allowNull: true
   },
