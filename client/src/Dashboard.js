@@ -2,6 +2,8 @@ import { useAuth } from './AuthContext'
 import './Dashboard.css'
 import { Link } from 'react-router-dom'
 
+
+
 function Dashboard() {
   const { user } = useAuth()
 
@@ -20,7 +22,7 @@ function Dashboard() {
             Bem Vindo, <b>Usuário</b>
           </div>
           <div className="fadeIn">
-            
+
             <nav className="navbar navbar-light bg-light rounded-top mx-5 mt-3">
               <div className="container-fluid">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,12 +43,12 @@ function Dashboard() {
                     to='/#'>
                     <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Início 🏠</button>
                   </Link>
-                  <Link 
+                  <Link
                     to='/powerbi'>
                     <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Análise 📊</button>
                   </Link>
                   <Link
-                  to='/#'>
+                    to='/#'>
                     <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Feedback 🔁</button>
                   </Link>
                 </div>
@@ -56,22 +58,22 @@ function Dashboard() {
             <div className="ContainerForm">
               <div className="input-group input-group-lg mb-3 px-5 mt-5 w-100" id='inputTipo1'>
                 <span className="input-group-text" id="basic-addon1">Nome</span>
-                <input type="text" className="form-control" placeholder="Nome paciente" aria-label="Nome" aria-describedby="campo-nome"/>
+                <input type="text" className="form-control" placeholder="Nome paciente" aria-label="Nome" aria-describedby="campo-nome" />
               </div>
 
               <div className="input-group input-group-lg mb-3 px-5">
                 <span className="input-group-text" id="basic-addon1">Nome da mãe</span>
-                <input type="text" className="form-control" placeholder="Nome da mãe" aria-label="Nome da mãe" aria-describedby="campo-nome-mãe"/>
+                <input type="text" className="form-control" placeholder="Nome da mãe" aria-label="Nome da mãe" aria-describedby="campo-nome-mãe" />
               </div>
 
               <div className="input-group input-group-lg mb-3 px-5">
                 <span className="input-group-text" id="basic-addon1">Nome social</span>
-                <input type="text" className="form-control" placeholder="Nome social" aria-label="Nome social" aria-describedby="campo-nome-social"/>
+                <input type="text" className="form-control" placeholder="Nome social" aria-label="Nome social" aria-describedby="campo-nome-social" />
               </div>
 
               <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                 <span className="input-group-text w-50 text-wrap" id="basic-addon1">Data de nascimento</span>
-                <input type="date" className="form-control" placeholder="data" aria-label="Data de nascimento" aria-describedby="campo-data"/>
+                <input type="date" className="form-control" placeholder="data" aria-label="Data de nascimento" aria-describedby="campo-data" />
               </div>
 
               <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
@@ -87,17 +89,17 @@ function Dashboard() {
 
               <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                 <span className="input-group-text" id="basic-addon1">CPF</span>
-                <input type="text" className="form-control" placeholder="CPF" aria-label="Número CPF" aria-describedby="campo-cpf"/>
+                <input type="text" className="form-control" placeholder="CPF" aria-label="Número CPF" aria-describedby="campo-cpf" />
               </div>
 
               <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
                 <span className="input-group-text" id="basic-addon1">Telefone</span>
-                <input type="text" className="form-control" placeholder="DD XXXXXXXXX" aria-label="Telefone" aria-describedby="campo-telefone"/>
+                <input type="text" className="form-control" placeholder="DD XXXXXXXXX" aria-label="Telefone" aria-describedby="campo-telefone" />
               </div>
 
               <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                 <span className="input-group-text" id="basic-addon1">Lote</span>
-                <input type="text" className="form-control" placeholder="Lote" aria-label="Lote" aria-describedby="campo-lote"/>
+                <input type="text" className="form-control" placeholder="Lote" aria-label="Lote" aria-describedby="campo-lote" />
               </div>
 
               <div className="input-group input-group-lg mb-3 pe-5 ps-1 w-50">
@@ -135,20 +137,20 @@ function Dashboard() {
               <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                 <span className="input-group-text" id="basic-addon1">Gestante</span>
                 <div className="input-group-text">
-                  <input className="form-check-input mt-0" type="checkbox" id='declaracao_gestante' aria-label="Gestante" aria-describedby="campo-gestante"/>
+                  <input className="form-check-input mt-0" type="checkbox" id='declaracao_gestante' aria-label="Gestante" aria-describedby="campo-gestante" />
                 </div>
               </div>
 
               <div className="input-group input-group-lg mb-3 pe-5 ps-1 w-50">
                 <span className="input-group-text" id="basic-addon1">Puérpera</span>
                 <div className="input-group-text">
-                  <input className="form-check-input mt-0" type="checkbox" id='declaracao_puerpera' aria-label="Puerpera" aria-describedby="campo-puerpera"/>
+                  <input className="form-check-input mt-0" type="checkbox" id='declaracao_puerpera' aria-label="Puerpera" aria-describedby="campo-puerpera" />
                 </div>
               </div>
 
               <div className="input-group input-group-lg mb-3 px-5 ">
                 <span className="input-group-text" id="basic-addon1">CEP</span>
-                <input type="text" className="form-control" placeholder="CEP" aria-label="CEP" aria-describedby="campo-cep"/>
+                <input type="text" className="form-control" placeholder="CEP" aria-label="CEP" aria-describedby="campo-cep" />
               </div>
 
               <div className="input-group input-group-lg mb-3 pe-1 ps-5 w-50">
@@ -172,26 +174,26 @@ function Dashboard() {
 
               <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-75">
                 <span className="input-group-text" id="basic-addon1">Endereço</span>
-                <input type="text" className="form-control" placeholder="Endereço"/>
+                <input type="text" className="form-control" placeholder="Endereço" />
               </div>
 
               <div className="input-group input-group-lg mb-3 pe-5 ps-1 w-25">
                 <span className="input-group-text" id="basic-addon1">N°</span>
-                <input type="text" className="form-control" placeholder="n°"/>
+                <input type="text" className="form-control" placeholder="n°" />
               </div>
 
               <div className="input-group input-group-lg mb-3 px-5 ">
                 <span className="input-group-text" id="basic-addon1">Bairo</span>
-                <input type="text" className="form-control" placeholder="Bairro"/>
+                <input type="text" className="form-control" placeholder="Bairro" />
               </div>
 
               <div className="input-group input-group-lg mb-3 px-5 ">
                 <span className="input-group-text" id="basic-addon1">Complemento</span>
-                <input type="text" className="form-control" placeholder="Complemento" aria-label="Complemento" aria-describedby="campo-complemento"/>
+                <input type="text" className="form-control" placeholder="Complemento" aria-label="Complemento" aria-describedby="campo-complemento" />
               </div>
             </div>
             <div className="d-grid gap-2">
-            <button type="button" className="btn btn-primary btn-large mx-5 my-3">Enviar</button>
+              <button type="button" className="btn btn-primary btn-large mx-5 my-3">Enviar</button>
             </div>
           </div>
         </div>
