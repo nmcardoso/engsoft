@@ -1,47 +1,62 @@
-.wrapper {
-    justify-content: center;
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+    width: 100vw;
+
+    align-items: center;
+    overflow: auto;
 }
 
 .fadeOut{
     font-size: 30px;
+    position: absolute;
+    top: 50%;
     animation-name: fadeout;
     animation-delay: 1s;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
     justify-content: center;
 }
+
 .fadeIn{
+    /* animacao */
     opacity: 0;
     animation-name: fadein;
     animation-delay: 2.4s;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
-    font-size: 30px;
+
+    /* efeito sombra */
     box-shadow: 0 0 15px rgba(48, 48, 48, 1);
     
-    /* posiciona a div adequadamente */
-    height: 96vh;
-    width: 98vw;
-    position: absolute;
-    top: 2vh; left: 1vw;
-    /* cor solida */
+    /* posiciona a div adequadamente, margens e paddings */
+    top: -3vh;
+    width: 92vw;
+    padding: 1%;
+    margin: 3%;
+
+    /* cor de fundo solida */
     /* background: rgba(43, 121, 48, 0.8); */
+    
+    /* cor de fundo gradiente */
+    background-image: linear-gradient(to top right, rgba(43, 121, 48, 1), rgba(44, 171, 124, 1));
+}
 
-    /* gradiente */
-    background-image: linear-gradient(to top right, rgba(35, 77, 38, 0.83), rgba(43, 121, 48, 0.87));
+.ContainerForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
-
-    /* ajusta texto */
-    /* padding: 2vh 1vw 1vh; */
-    text-align: center;
-    color:rgb(243, 243, 243);
-
+.ContainerButton {
+    align-content: center;
 }
 
 @keyframes fadeout {
     0% {opacity: 1;}
-    100% {opacity: 0;
-          display: none;}
+    100% {opacity: 0;}
 }
 
 @keyframes fadein {
