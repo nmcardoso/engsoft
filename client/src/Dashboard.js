@@ -132,7 +132,7 @@ function Dashboard() {
       ) : (
         <div className="pageContainer">
           <div className='fadeOut'>
-            Bem Vindo, <b>Usuário</b>
+            Bem Vindo, <b>{user.nome}</b>
           </div>
           <div className="fadeIn">
 
