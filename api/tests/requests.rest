@@ -2,8 +2,8 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "username": "natan",
-  "password": "natan2"
+  "username": "n",
+  "password": "n"
 }
 
 ###
@@ -22,15 +22,37 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:8080/formulario/
+Content-Type: application/json
 
-GET http://localhost:8080/auth/validate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQ1Mjg5MzN9.1kQoxXuKN0ZOCXCw05GIkLxkuWV5LXJ7GaDQivXAZSg
-
+{
+  "id_unidade_saude": 1,
+  "cpf": "77788899945",
+  "telefone": "3588996633",
+  "nome": "Natanael",
+  "data_nascimento": "2021-06-17",
+  "laboratorio": "pfizer",
+  "lote": "32A",
+  "data_vacinacao": "2021-06-17",
+  "dose": 1,
+  "nome_mae": "Maria",
+  "sexo": "Masculino",
+  "raca": "Branco",
+  "gestante": false,
+  "puerpera": false,
+  "zona": "A",
+  "logradouro": "Rua Tal",
+  "numero": "128-A",
+  "bairro": "Centro",
+  "complemento": "Lado ímpar",
+  "cep": "37810000"
+}
 
 ###
 
-GET http://localhost:8080/auth/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQwMjc3NjF9.TZc7uQoAo58z95yaC_Bze6s9e3WhasPmlwLNJ2Mjp64
+
+GET http://localhost:8080/auth/validate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmF0YW4iLCJpYXQiOjE2MjQ1Mjg5MzN9.1kQoxXuKN0ZOCXCw05GIkLxkuWV5LXJ7GaDQivXAZSg
 
 
 ###
