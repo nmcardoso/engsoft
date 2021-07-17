@@ -1,4 +1,5 @@
 const express = require('express')
+const { Op } = require('sequelize')
 
 const UnidadeSaude = require('../models/UnidadeSaude')
 
@@ -6,28 +7,34 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
   let data = []
+  const params = {
+    limit: req.query.limit || 50
+  }
+
   if (req.query.campos) {
     const campos = req.query.campos.split(',')
-    try {
-      data = await UnidadeSaude.findAll({
-        attributes: campos
-      })
-    } catch (err) {
-      let message = ''
-      if (err?.original?.routine === 'errorMissingColumn') {
-        message = 'pelo menos um dos campos especificados na requisição está incorreto'
+    params.attributes = campos
+  }
+
+  if (req.query.query !== undefined) {
+    params.where = {
+      nome: {
+        [Op.iLike]: `%${req.query.query?.replace(' ', '%')}%`
       }
-      return res.status(500).json({ success: false, message })
-    }
-  } else {
-    try {
-      data = await UnidadeSaude.findAll()
-    } catch (err) {
-      return res.status(500).json({ success: false })
     }
   }
 
-  res.send(data)
+  try {
+    data = await UnidadeSaude.findAll(params)
+  } catch (err) {
+    let message = ''
+    if (err?.original?.routine === 'errorMissingColumn') {
+      message = 'pelo menos um dos campos especificados na requisição está incorreto'
+    }
+    return res.status(500).json({ success: false, message })
+  }
+
+  res.json(data)
 })
 
 module.exports = router
