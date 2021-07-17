@@ -1,6 +1,23 @@
 import { useState, useEffect } from 'react'
+import AsyncSelect from 'react-select/async'
 import API from './services/API'
 import './Login.css'
+
+
+const fetchUnidades = async query => {
+  const api = new API()
+  try {
+    const unidades = await api.getUnidadeSaude({
+      campos: ['id', 'nome'],
+      query,
+      limit: 20
+    })
+    const mapped = unidades.data.map(u => ({ value: u.id, label: u.nome }))
+    return mapped
+  } catch (e) {
+    console.log(e)
+  }
+}
 
 function Register() {
   const [nome, setNome] = useState('')
@@ -10,7 +27,6 @@ function Register() {
   const [idUnidade, setIdUnidade] = useState(null)
   const [message, setMessage] = useState({})
   const [loading, isLoading] = useState(false)
-  const [listaUnidades, setListaUnidades] = useState([])
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -31,12 +47,6 @@ function Register() {
         isLoading(false)
       })
   }
-
-  useEffect(async () => {
-    const api = new API()
-    const unidades = await api.getUnidadeSaude({ campos: ['id', 'nome'] })
-    setListaUnidades(unidades.data)
-  }, [])
 
   return (
     <div className="limiter">
@@ -132,19 +142,22 @@ function Register() {
                 htmlFor="exampleInputUnidade">
                 Unidade
               </label>
-
-              <select
-                className="form-select"
-                onChange={e => setIdUnidade(parseInt(e.target.value))}
-                disabled={listaUnidades.length === 0}
-                defaultValue="-1"
-              >
-                {listaUnidades.length === 0 ? <option value="-1">Carregando...</option> : null}
-                {listaUnidades.map(u => <option key={u.id} value={u.id}>{u.nome}</option>)}
-              </select>
-
+              <AsyncSelect
+                cacheOptions
+                defaultOptions
+                onChange={e => setIdUnidade(e?.value)}
+                loadOptions={fetchUnidades}
+                isClearable={true}
+                loadingMessage={() => 'Procurando'}
+                noOptionsMessage={() => 'Nada encontrado'}
+                theme={{
+                  spacing: {
+                    baseUnit: 3,
+                    controlHeight: 48,
+                    menuGutter: 0
+                  }
+                }} />
             </div>
-
 
             {loading ? (
               <button
