@@ -47,11 +47,16 @@ class API {
     return this.client.get('/auth/validate')
   }
 
-  getUnidadeSaude({ campos }) {
-    const params = campos ? { campos: campos.join(',') } : {}
-    return this.client.get('/unidade_saude', {
-      params
-    })
+  getUnidadeSaude(params) {
+    const queryString = Object.entries(params)
+      .map(([key, value]) => {
+        if (Array.isArray(value)) {
+          value = value.join(',')
+        }
+        return `${key}=${value}`
+      })
+      .join('&')
+    return this.client.get(`/unidade_saude?${queryString}`)
   }
 
   postFormulario(data) {
