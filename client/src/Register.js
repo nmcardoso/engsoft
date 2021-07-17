@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import API from './API'
+import API from './services/API'
 import './Login.css'
 
 function Register() {
