@@ -1,0 +1,17 @@
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(48, 48, 48, 1);
+    
+    /* posiciona a div adequadamente, margens e paddings */
+    width: 50vw;
+    padding: 10%;
+
+    /* cor de fundo solida */
+    /* background: rgba(43, 121, 48, 0.8); */
+    
+    /* cor de fundo gradiente */
+    background-image: linear-gradient(to top right, rgba(43, 121, 48, 1), rgba(44, 171, 124, 1));
+}

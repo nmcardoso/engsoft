@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import { useAuth } from './AuthContext'
 import './Login.css'
+import HomeButton from './HomeButton'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -28,6 +29,7 @@ function Login() {
 
   return (
     <div className="limiter">
+      <HomeButton />
       <div className="page-container">
         <div className="banner-wrapper d-none d-md-block">
           <div className="gov-logo"></div>

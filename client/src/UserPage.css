@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+    width: 100vw;
+
+    align-items: center;
+    overflow: auto;
+}
+
+.limiter{
+    /* efeito sombra */
+    box-shadow: 0 0 15px rgba(48, 48, 48, 1);
+    
+    /* posiciona a div adequadamente, margens e paddings */
+    top: -3vh;
+    width: 92vw;
+    padding: 1%;
+    margin: 3%;
+
+    /* cor de fundo solida */
+    /* background: rgba(43, 121, 48, 0.8); */
+    
+    /* cor de fundo gradiente */
+    background-image: linear-gradient(to top right, rgba(43, 121, 48, 1), rgba(44, 171, 124, 1));
+}
+
+.userInfo {
+    background-color: rgb(248, 249, 250);
+    margin: 0 48px;
+    padding: 12px;
+}

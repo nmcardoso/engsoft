@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import AsyncSelect from 'react-select/async'
 import API from './services/API'
 import './Login.css'
+import HomeButton from './HomeButton'
 
 
 const fetchUnidades = async query => {
@@ -50,6 +51,7 @@ function Register() {
 
   return (
     <div className="limiter">
+      <HomeButton />
       <div className="page-container">
         <div className="banner-wrapper d-none d-md-block">
           <div className="gov-logo"></div>

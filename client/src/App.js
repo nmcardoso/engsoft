@@ -11,6 +11,7 @@ import Dashboard from './Dashboard'
 import PowerBI from './PowerBI'
 import { AuthProvider } from './AuthContext'
 import AuthRedirect from './AuthRedirect'
+import UserPage from './UserPage'
 
 function App() {
   return (
@@ -38,6 +39,11 @@ function App() {
           <Route path="/powerbi">
             <AuthRedirect ifLogged={false} to="/login">
               <PowerBI />
+            </AuthRedirect>
+          </Route>
+          <Route path="/userpage">
+            <AuthRedirect ifLogged={false} to="/login">
+              <UserPage />
             </AuthRedirect>
           </Route>
         </Switch>
