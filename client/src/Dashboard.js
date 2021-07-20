@@ -42,11 +42,25 @@ function Dashboard() {
   const [touched, setTouched] = useState(initialTouched)
   const [fetchingCep, isFetchingCep] = useState(false)
 
+  const [nome, setNome] = useState('')
+  const [nomeMae, setNomeMae] = useState('')
+  const [nomeSocial, setNomeSocial] = useState('')
+  const [dataNascimento, setNascimento] = useState('')
+  const [sexo, setSexo] = useState('Escolher')
+  const [cpf, setCPF] = useState('')
+  const [telefone, setTelefone] = useState('')
+  const [lote, setLote] = useState('')
+  const [lab, setLab] = useState('Escolher')
+  const [dose, setDose] = useState('Escolher')
+  const [etnia, setEtnia] = useState('Escolher')
+  const [gestante, setGestante] = useState(false)
+  const [puerpera, setPuerpera] = useState(false)
+
   const touch = (field) => {
     if (!touched[field]) setTouched({ ...touched, [field]: true })
   }
 
-  const validate = {
+  const validate = {   
     endereco: data => {
       let error
       if (data.length < 1) error = 'Informe o endereço'
@@ -135,7 +149,6 @@ function Dashboard() {
             Bem Vindo, <b>{user.nome}</b>
           </div>
           <div className="fadeIn">
-
             <nav className="navbar navbar-light bg-light rounded-top mx-5 mt-3">
               <div className="container-fluid">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,7 +160,7 @@ function Dashboard() {
             </nav>
 
             <div className="collapse" id="navbarToggleExternalContent">
-              <div className="bg-light pb-3 pt-1 mx-5 px-4 d-flex justify-content-center rounded-bottom">
+              <div className="bg-light pb-3 pt-1 mx-5 px-4 d-flex justify-content-center">
 
                 {/* colocar as coisas que vao dentro da navbar aqui */}
 
@@ -172,93 +185,259 @@ function Dashboard() {
               <div className="ContainerForm">
                 <div className="input-group input-group-lg mb-3 px-5 mt-5 w-100" id='inputTipo1'>
                   <span className="input-group-text" id="basic-addon1">Nome</span>
-                  <input type="text" className="form-control" placeholder="Nome paciente" aria-label="Nome" aria-describedby="campo-nome" />
+                  <input 
+                    type="text" 
+                    className={validationClass
+                    ('form-control', touched.nome, errors.nome)} 
+                    placeholder="Nome paciente" 
+                    aria-label="Nome" 
+                    aria-describedby="campo-nome"
+                    onChange={e => setNome(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 px-5">
                   <span className="input-group-text" id="basic-addon1">Nome da mãe</span>
-                  <input type="text" className="form-control" placeholder="Nome da mãe" aria-label="Nome da mãe" aria-describedby="campo-nome-mãe" />
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Nome da mãe" 
+                    aria-label="Nome da mãe"
+                    aria-describedby="campo-nome-mãe"
+                    onChange={e => setNomeMae(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 px-5">
                   <span className="input-group-text" id="basic-addon1">Nome social</span>
-                  <input type="text" className="form-control" placeholder="Nome social" aria-label="Nome social" aria-describedby="campo-nome-social" />
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Nome social" 
+                    aria-label="Nome social" 
+                    aria-describedby="campo-nome-social" 
+                    onChange={e => setNomeSocial(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text w-50 text-wrap" id="basic-addon1">Data de nascimento</span>
-                  <input type="date" className="form-control" placeholder="data" aria-label="Data de nascimento" aria-describedby="campo-data" />
+                  <input 
+                    type="date" 
+                    className="form-control" 
+                    placeholder="data" 
+                    aria-label="Data de nascimento" 
+                    aria-describedby="campo-data"
+                    onChange={e => setNascimento(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
                   <span className="input-group-text" id="basic-addon1">Sexo</span>
-                  <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{sexo}</button>
                   <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Feminino</a></li>
-                    <li><a className="dropdown-item" href="#">Masculino</a></li>
-                    <li><a className="dropdown-item" href="#">Outros</a></li>
-                    <li><a className="dropdown-item" href="#">Não declarado</a></li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setSexo(e.target.textContent)} >
+                        Feminino
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setSexo(e.target.textContent)} >
+                        Masculino
+                      </a>
+                      </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setSexo(e.target.textContent)} >
+                        Outros
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setSexo(e.target.textContent)} >
+                        Não declarado
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">CPF</span>
-                  <input type="text" className="form-control" placeholder="CPF" aria-label="Número CPF" aria-describedby="campo-cpf" />
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="CPF" 
+                    aria-label="Número CPF" 
+                    aria-describedby="campo-cpf"
+                    onChange={e => setCPF(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
                   <span className="input-group-text" id="basic-addon1">Telefone</span>
-                  <input type="text" className="form-control" placeholder="DD XXXXXXXXX" aria-label="Telefone" aria-describedby="campo-telefone" />
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="DD XXXXXXXXX" 
+                    aria-label="Telefone" 
+                    aria-describedby="campo-telefone"
+                    onChange={e => setTelefone(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Lote</span>
-                  <input type="text" className="form-control" placeholder="Lote" aria-label="Lote" aria-describedby="campo-lote" />
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Lote" 
+                    aria-label="Lote" 
+                    aria-describedby="campo-lote"
+                    onChange={e => setLote(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 pe-5 ps-1 w-50">
-                  <span className="input-group-text" id="basic-addon1">Laboratório</span>
-                  <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+                  <span className="input-group-text" id="basic-addon1">Marca</span>
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{lab}</button>
                   <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Lab3</a></li>
-                    <li><a className="dropdown-item" href="#">Lab2</a></li>
-                    <li><a className="dropdown-item" href="#">Lab1</a></li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setLab(e.target.textContent)}>
+                        CoronaVac
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setLab(e.target.textContent)}>
+                        AstraZeneca
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setLab(e.target.textContent)}>
+                        Pfizer
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setLab(e.target.textContent)}>
+                        Janssen
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setLab(e.target.textContent)}>
+                        Sputnik V
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setLab(e.target.textContent)}>
+                        Covaxin
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Dose</span>
-                  <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{dose}</button>
                   <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">1ª</a></li>
-                    <li><a className="dropdown-item" href="#">2ª</a></li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setDose(e.target.textContent)}>
+                        1ª
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setDose(e.target.textContent)}>
+                        2ª
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
                   <span className="input-group-text" id="basic-addon1">Raça/Cor/Etnia</span>
-                  <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Escolher</button>
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{etnia}</button>
                   <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Branca</a></li>
-                    <li><a className="dropdown-item" href="#">Preta</a></li>
-                    <li><a className="dropdown-item" href="#">Parda</a></li>
-                    <li><a className="dropdown-item" href="#">Amarela</a></li>
-                    <li><a className="dropdown-item" href="#">Indígena</a></li>
-                    <li><a className="dropdown-item" href="#">Não informada</a></li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setEtnia(e.target.textContent)}>
+                        Branca
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setEtnia(e.target.textContent)}>
+                        Preta
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setEtnia(e.target.textContent)}>
+                        Parda
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setEtnia(e.target.textContent)}>
+                        Amarela
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setEtnia(e.target.textContent)}>
+                        Indígena
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        className="dropdown-item"
+                        onClick={e => setEtnia(e.target.textContent)}>
+                        Não informada
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Gestante</span>
                   <div className="input-group-text">
-                    <input className="form-check-input mt-0" type="checkbox" id='declaracao_gestante' aria-label="Gestante" aria-describedby="campo-gestante" />
+                    <input 
+                      className="form-check-input mt-0" 
+                      type="checkbox"
+                      id='declaracao_gestante' 
+                      aria-label="Gestante" 
+                      aria-describedby="campo-gestante"
+                      onClick={e => setGestante(e.target.checked)} />
                   </div>
                 </div>
 
                 <div className="input-group input-group-lg mb-3 pe-5 ps-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Puérpera</span>
                   <div className="input-group-text">
-                    <input className="form-check-input mt-0" type="checkbox" id='declaracao_puerpera' aria-label="Puerpera" aria-describedby="campo-puerpera" />
+                    <input 
+                      className="form-check-input mt-0" 
+                      type="checkbox" 
+                      id='declaracao_puerpera' 
+                      aria-label="Puerpera" 
+                      aria-describedby="campo-puerpera"
+                      onClick={e => setPuerpera(e.target.checked)} />
                   </div>
                 </div>
 

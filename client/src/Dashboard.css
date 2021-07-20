@@ -1,3 +1,22 @@
+:root {
+    --cinza_menu: #F8F9FA;
+    --paleta1: #2CAB7C;
+    --paleta2: #A9DECA;
+    --paleta3: #2B7930; 
+    --paleta4: #85517F;
+    --paleta5: #902CAB;
+    --sombra: rgba(48, 48, 48, 1);
+}
+
+.ContainerForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin: 0 48px;
+    background-color: var(--cinza_menu);
+}
+
 .pageContainer {
     display: flex;
     flex-direction: column;
@@ -29,7 +48,7 @@
     animation-fill-mode: forwards;
 
     /* efeito sombra */
-    box-shadow: 0 0 15px rgba(48, 48, 48, 1);
+    box-shadow: 0 0 15px var(--sombra);
     
     /* posiciona a div adequadamente, margens e paddings */
     top: -3vh;
@@ -41,13 +60,7 @@
     /* background: rgba(43, 121, 48, 0.8); */
     
     /* cor de fundo gradiente */
-    background-image: linear-gradient(to top right, rgba(43, 121, 48, 1), rgba(44, 171, 124, 1));
-}
-
-.ContainerForm {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    background-image: linear-gradient(to top right, var(--paleta3), var(--paleta1));
 }
 
 .ContainerButton {
