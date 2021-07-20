@@ -15,7 +15,7 @@ function UserPage () {
                             <span className="navbar-toggler-icon"></span>
                             <span> Menu</span>
                         </button>
-                        <span className=''>Formulário</span>
+                        <span className=''>Página do usuário</span>
                     </div>
                 </nav>
 
@@ -35,14 +35,18 @@ function UserPage () {
                             </Link>
                             <Link
                                 to='/#'>
-                                <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Feedback 🔁</button>
+                                <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Feedack 🔁</button>
                             </Link>
                         </div>
                     </div>
                 </div>
                 <div className="userInfo">
-                    <p>Nome: {user.nome}</p>
-                    <p>Unidiade de saúde: {user.id_unidade_saude}</p>
+                    <h4>{user.nome}</h4>
+                    <h6>Unidiade de saúde: {user.id_unidade_saude}</h6>
+                    <hr />
+                    <a href='' className='userActions'>Deslogar</a>
+                    <p />
+                    <a href='' className='userActions'>Trocar senha</a>
                 </div>
             </div>
         </div>

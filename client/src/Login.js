@@ -28,8 +28,7 @@ function Login() {
   }
 
   return (
-    <div className="limiter">
-      <HomeButton />
+    <div>
       <div className="page-container">
         <div className="banner-wrapper d-none d-md-block">
           <div className="gov-logo"></div>
@@ -37,6 +36,7 @@ function Login() {
           <div id="particles-foreground"></div>
         </div>
         <div className="form-wrapper justify-content-center align-items-center">
+          <HomeButton />
           <div className="vacivida-logo"></div>
           <div className="fw-bolder mb-4" style={{ fontSize: "2em" }}>
             Entrar

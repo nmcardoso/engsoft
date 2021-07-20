@@ -50,7 +50,7 @@ function Register() {
   }
 
   return (
-    <div className="limiter">
+    <div>
       <HomeButton />
       <div className="page-container">
         <div className="banner-wrapper d-none d-md-block">
