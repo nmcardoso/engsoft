@@ -43,8 +43,16 @@ class API {
     })
   }
 
-  validateToken() {
-    return this.client.get('/auth/validate')
+  validateToken(token) {
+    let options = {}
+    if (token) {
+      options = {
+        headers: {
+          'Authorization': `bearer ${token}`
+        }
+      }
+    }
+    return this.client.get('/auth/validate', options)
   }
 
   getUnidadeSaude(params) {

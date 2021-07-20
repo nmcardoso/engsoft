@@ -41,6 +41,8 @@ const Login = db.define('login', {
 Login.belongsTo(UnidadeSaude, {
   foreignKey: 'id_unidade_saude'
 })
-UnidadeSaude.hasMany(Login)
+UnidadeSaude.hasMany(Login, {
+  foreignKey: 'id_unidade_saude'
+})
 
 module.exports = Login
