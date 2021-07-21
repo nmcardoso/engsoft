@@ -46,7 +46,9 @@
     animation-delay: 2.4s;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
+}
 
+.backgroundFX {
     /* efeito sombra */
     box-shadow: 0 0 15px var(--sombra);
     

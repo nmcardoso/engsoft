@@ -6,7 +6,8 @@ const AuthContext = createContext()
 export function AuthProvider({ children }) {
   const [state, setState] = useState({
     user: null,
-    session: null
+    session: null,
+    dashboardLoaded: false
   })
   const api = new API()
 
@@ -62,11 +63,17 @@ export function AuthProvider({ children }) {
     })
   }
 
+  function setDashboardLoaded(dashboardLoaded) {
+    setState({ ...state, ...{dashboardLoaded} })
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user: state.user,
         session: state.session,
+        dashboardLoaded: state.dashboardLoaded,
+        setDashboardLoaded,
         login,
         logout
       }}
