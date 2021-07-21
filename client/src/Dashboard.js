@@ -58,28 +58,30 @@ function Dashboard() {
       if (data.length < 1) error = 'Informe o CEP'
       else if (data.length !== 8) error = 'CEP Inválido'
       else {
-        isFetchingCep(true)
-        const api = new CepApi()
-        api.getInfo(data).then(info => {
-          const newValues = {
-            endereco: info.data.logradouro,
-            uf: info.data.uf,
-            municipio: info.data.localidade,
-            bairro: info.data.bairro,
-            complemento: info.data.complemento
-          }
-          const newErrors = {
-            endereco: validate.endereco(newValues.endereco),
-            municipio: validate.municipio(newValues.municipio),
-            bairro: validate.bairro(newValues.bairro)
-          }
+        if (data !== values.cep) {
+          isFetchingCep(true)
+          const api = new CepApi()
+          api.getInfo(data).then(info => {
+            const newValues = {
+              endereco: info.data.logradouro,
+              uf: info.data.uf,
+              municipio: info.data.localidade,
+              bairro: info.data.bairro,
+              complemento: info.data.complemento
+            }
+            const newErrors = {
+              endereco: validate.endereco(newValues.endereco),
+              municipio: validate.municipio(newValues.municipio),
+              bairro: validate.bairro(newValues.bairro)
+            }
 
-          isFetchingCep(false)
-          valuesDispatcher(newValues)
-          errorsDispatcher(newErrors)
-        }).catch(e => {
-          isFetchingCep(false)
-        })
+            isFetchingCep(false)
+            valuesDispatcher(newValues)
+            errorsDispatcher(newErrors)
+          }).catch(e => {
+            isFetchingCep(false)
+          })
+        }
       }
       return error
     },
