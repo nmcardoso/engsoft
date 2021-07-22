@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const { exec } = require('child_process')
 
+const load_env = require('./load_env')
+load_env()
 const db = require('../config/database')
 
 
