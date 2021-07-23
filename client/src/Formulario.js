@@ -1,5 +1,5 @@
 import { useAuth } from './AuthContext'
-import './Dashboard.css'
+import './Formulario.css'
 import { Link } from 'react-router-dom'
 import { useReducer, useState } from 'react'
 import CepApi from './services/CepApi'
@@ -34,7 +34,7 @@ function errorsReducer(state, action) {
 }
 
 
-function Dashboard() {
+function Formulario() {
   const { user } = useAuth()
 
   const [values, valuesDispatcher] = useReducer(valuesReducer, initialValues)
@@ -60,7 +60,7 @@ function Dashboard() {
     if (!touched[field]) setTouched({ ...touched, [field]: true })
   }
 
-  const validate = {   
+  const validate = {
     endereco: data => {
       let error
       if (data.length < 1) error = 'Informe o endereço'
@@ -187,22 +187,22 @@ function Dashboard() {
               <div className="ContainerForm">
                 <div className="input-group input-group-lg mb-3 px-5 mt-5 w-100" id='inputTipo1'>
                   <span className="input-group-text" id="basic-addon1">Nome</span>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     className={validationClass
-                    ('form-control', touched.nome, errors.nome)} 
-                    placeholder="Nome paciente" 
-                    aria-label="Nome" 
+                      ('form-control', touched.nome, errors.nome)}
+                    placeholder="Nome paciente"
+                    aria-label="Nome"
                     aria-describedby="campo-nome"
                     onChange={e => setNome(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 px-5">
                   <span className="input-group-text" id="basic-addon1">Nome da mãe</span>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Nome da mãe" 
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nome da mãe"
                     aria-label="Nome da mãe"
                     aria-describedby="campo-nome-mãe"
                     onChange={e => setNomeMae(e.target.value)} />
@@ -210,22 +210,22 @@ function Dashboard() {
 
                 <div className="input-group input-group-lg mb-3 px-5">
                   <span className="input-group-text" id="basic-addon1">Nome social</span>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Nome social" 
-                    aria-label="Nome social" 
-                    aria-describedby="campo-nome-social" 
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nome social"
+                    aria-label="Nome social"
+                    aria-describedby="campo-nome-social"
                     onChange={e => setNomeSocial(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text w-50 text-wrap" id="basic-addon1">Data de nascimento</span>
-                  <input 
-                    type="date" 
-                    className="form-control" 
-                    placeholder="data" 
-                    aria-label="Data de nascimento" 
+                  <input
+                    type="date"
+                    className="form-control"
+                    placeholder="data"
+                    aria-label="Data de nascimento"
                     aria-describedby="campo-data"
                     onChange={e => setNascimento(e.target.value)} />
                 </div>
@@ -235,28 +235,28 @@ function Dashboard() {
                   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{sexo}</button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setSexo(e.target.textContent)} >
                         Feminino
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setSexo(e.target.textContent)} >
                         Masculino
                       </a>
-                      </li>
+                    </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setSexo(e.target.textContent)} >
                         Outros
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setSexo(e.target.textContent)} >
                         Não declarado
@@ -267,33 +267,33 @@ function Dashboard() {
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">CPF</span>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="CPF" 
-                    aria-label="Número CPF" 
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="CPF"
+                    aria-label="Número CPF"
                     aria-describedby="campo-cpf"
                     onChange={e => setCPF(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
                   <span className="input-group-text" id="basic-addon1">Telefone</span>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="DD XXXXXXXXX" 
-                    aria-label="Telefone" 
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="DD XXXXXXXXX"
+                    aria-label="Telefone"
                     aria-describedby="campo-telefone"
                     onChange={e => setTelefone(e.target.value)} />
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Lote</span>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Lote" 
-                    aria-label="Lote" 
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Lote"
+                    aria-label="Lote"
                     aria-describedby="campo-lote"
                     onChange={e => setLote(e.target.value)} />
                 </div>
@@ -303,42 +303,42 @@ function Dashboard() {
                   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{lab}</button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
                         CoronaVac
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
                         AstraZeneca
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
                         Pfizer
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
                         Janssen
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
                         Sputnik V
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
                         Covaxin
@@ -352,14 +352,14 @@ function Dashboard() {
                   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{dose}</button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setDose(e.target.textContent)}>
                         1ª
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setDose(e.target.textContent)}>
                         2ª
@@ -373,42 +373,42 @@ function Dashboard() {
                   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{etnia}</button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setEtnia(e.target.textContent)}>
                         Branca
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setEtnia(e.target.textContent)}>
                         Preta
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setEtnia(e.target.textContent)}>
                         Parda
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setEtnia(e.target.textContent)}>
                         Amarela
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setEtnia(e.target.textContent)}>
                         Indígena
                       </a>
                     </li>
                     <li>
-                      <a 
+                      <a
                         className="dropdown-item"
                         onClick={e => setEtnia(e.target.textContent)}>
                         Não informada
@@ -420,11 +420,11 @@ function Dashboard() {
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Gestante</span>
                   <div className="input-group-text">
-                    <input 
-                      className="form-check-input mt-0" 
+                    <input
+                      className="form-check-input mt-0"
                       type="checkbox"
-                      id='declaracao_gestante' 
-                      aria-label="Gestante" 
+                      id='declaracao_gestante'
+                      aria-label="Gestante"
                       aria-describedby="campo-gestante"
                       onClick={e => setGestante(e.target.checked)} />
                   </div>
@@ -433,11 +433,11 @@ function Dashboard() {
                 <div className="input-group input-group-lg mb-3 pe-5 ps-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Puérpera</span>
                   <div className="input-group-text">
-                    <input 
-                      className="form-check-input mt-0" 
-                      type="checkbox" 
-                      id='declaracao_puerpera' 
-                      aria-label="Puerpera" 
+                    <input
+                      className="form-check-input mt-0"
+                      type="checkbox"
+                      id='declaracao_puerpera'
+                      aria-label="Puerpera"
                       aria-describedby="campo-puerpera"
                       onClick={e => setPuerpera(e.target.checked)} />
                   </div>
@@ -586,4 +586,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Formulario

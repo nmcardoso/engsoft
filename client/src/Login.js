@@ -20,7 +20,7 @@ function Login() {
     const resp = await login({ username, password })
 
     if (resp.success) {
-      history.push('/dashboard')
+      history.push('/formulario')
     } else {
       setMessage(resp.message)
       isLoading(false)
