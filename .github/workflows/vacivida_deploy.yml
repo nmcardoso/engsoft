@@ -1,0 +1,15 @@
+name: vacivida_deploy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'vacivida/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: request
+        run: |
+          curl -H "deploy_key: ${{ secrets.GLITCH_DEPLOY_KEY }}" -X GET https://engsoft-vacivida.glitch.me/deploy
