@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "https://vac.natanael.net/static/css/main.ddffd0ff.chunk.css",
-    "main.js": "https://vac.natanael.net/static/js/main.800558e2.chunk.js",
-    "main.js.map": "https://vac.natanael.net/static/js/main.800558e2.chunk.js.map",
+    "main.css": "https://vac.natanael.net/static/css/main.6f035610.chunk.css",
+    "main.js": "https://vac.natanael.net/static/js/main.91d949df.chunk.js",
+    "main.js.map": "https://vac.natanael.net/static/js/main.91d949df.chunk.js.map",
     "runtime-main.js": "https://vac.natanael.net/static/js/runtime-main.3e941504.js",
     "runtime-main.js.map": "https://vac.natanael.net/static/js/runtime-main.3e941504.js.map",
     "static/js/2.64964c9e.chunk.js": "https://vac.natanael.net/static/js/2.64964c9e.chunk.js",
     "static/js/2.64964c9e.chunk.js.map": "https://vac.natanael.net/static/js/2.64964c9e.chunk.js.map",
     "index.html": "https://vac.natanael.net/index.html",
-    "static/css/main.ddffd0ff.chunk.css.map": "https://vac.natanael.net/static/css/main.ddffd0ff.chunk.css.map",
+    "static/css/main.6f035610.chunk.css.map": "https://vac.natanael.net/static/css/main.6f035610.chunk.css.map",
     "static/js/2.64964c9e.chunk.js.LICENSE.txt": "https://vac.natanael.net/static/js/2.64964c9e.chunk.js.LICENSE.txt",
     "static/media/Login.css": "https://vac.natanael.net/static/media/vacina-fundo3.ae730428.jpg",
     "static/media/homeIcon.982f125b.png": "https://vac.natanael.net/static/media/homeIcon.982f125b.png"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.3e941504.js",
     "static/js/2.64964c9e.chunk.js",
-    "static/css/main.ddffd0ff.chunk.css",
-    "static/js/main.800558e2.chunk.js"
+    "static/css/main.6f035610.chunk.css",
+    "static/js/main.91d949df.chunk.js"
   ]
 }
