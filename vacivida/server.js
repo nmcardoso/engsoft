@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/test', (req, res) => {
-  res.send('Test Route <CI/CD>')
+  res.send('Test Route <CI/CD> KEY')
 })
 
 app.listen(process.env.PORT || 3333, () => {
