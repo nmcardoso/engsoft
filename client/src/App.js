@@ -7,7 +7,7 @@ import {
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
-import Dashboard from './Dashboard'
+import Formulario from './Formulario'
 import PowerBI from './PowerBI'
 import { AuthProvider } from './AuthContext'
 import AuthRedirect from './AuthRedirect'
@@ -22,18 +22,18 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <AuthRedirect ifLogged={true} to="/dashboard">
+            <AuthRedirect ifLogged={true} to="/formulario">
               <Login />
             </AuthRedirect>
           </Route>
           <Route path="/register">
-            <AuthRedirect ifLogged={true} to="/dashboard">
+            <AuthRedirect ifLogged={true} to="/formulario">
               <Register />
             </AuthRedirect>
           </Route>
-          <Route path="/dashboard">
+          <Route path="/formulario">
             <AuthRedirect ifLogged={false} to="/login">
-              <Dashboard />
+              <Formulario />
             </AuthRedirect>
           </Route>
           <Route path="/powerbi">
