@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.lineWraper {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.titles {
+    font-family: var(--bs-font-sans-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #212529;
+}
+
+.values {
+    margin-left: 4px;
+}
+
+.textoInfo {
+    font-family: var(--bs-font-sans-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+}
+
+h6 {
+    margin: 0;
+    padding: 0;
+}

@@ -43,7 +43,7 @@ function UserPage() {
                   Análise 📊
                 </button>
               </Link>
-              <Link to="/#">
+              <Link to="/feedback">
                 <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
                   Feedack 🔁
                 </button>

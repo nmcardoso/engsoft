@@ -176,7 +176,7 @@ function Formulario() {
                     <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Análise 📊</button>
                   </Link>
                   <Link
-                    to='/#'>
+                    to='/feedback'>
                     <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Feedback 🔁</button>
                   </Link>
                 </div>
@@ -549,7 +549,7 @@ function Formulario() {
                   )}
                 </div>
 
-                <div className="input-group input-group-lg mb-3 px-5 has-validation">
+                <div className="input-group input-group-lg px-5 has-validation">
                   <span className="input-group-text" id="basic-addon1">Complemento</span>
                   <input
                     type="text"
@@ -560,9 +560,9 @@ function Formulario() {
                     onBlur={e => handleFieldChange('complemento', e.target.value)}
                     onChange={e => handleFieldChange('complemento', e.target.value)} />
                 </div>
-              </div>
-              <div className="d-grid gap-2">
-                <button type="button" className="btn btn-primary btn-large mx-5 my-3">Enviar</button>
+                <div className="d-grid gap-2 w-100">
+                  <button type="button" className="btn btn-dark btn-large mx-5 mt-4 mb-5">Enviar</button>
+                </div>
               </div>
             </form>
           </div>

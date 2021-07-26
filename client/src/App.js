@@ -12,6 +12,7 @@ import PowerBI from './PowerBI'
 import { AuthProvider } from './AuthContext'
 import AuthRedirect from './AuthRedirect'
 import UserPage from './UserPage'
+import Feedback from './Feedback'
 
 function App() {
   return (
@@ -44,6 +45,11 @@ function App() {
           <Route path="/userpage">
             <AuthRedirect ifLogged={false} to="/login">
               <UserPage />
+            </AuthRedirect>
+          </Route>
+          <Route path="/feedback">
+            <AuthRedirect ifLogged={false} to="/login">
+              <Feedback />
             </AuthRedirect>
           </Route>
         </Switch>
