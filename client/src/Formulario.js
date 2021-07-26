@@ -327,21 +327,7 @@ function Formulario() {
                       <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
-                        Janssen
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        onClick={e => setLab(e.target.textContent)}>
                         Sputnik V
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        onClick={e => setLab(e.target.textContent)}>
-                        Covaxin
                       </a>
                     </li>
                   </ul>

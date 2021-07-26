@@ -22,12 +22,12 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <AuthRedirect ifLogged={true} to="/formulario">
+            <AuthRedirect ifLogged={true} to="/userpage">
               <Login />
             </AuthRedirect>
           </Route>
           <Route path="/register">
-            <AuthRedirect ifLogged={true} to="/formulario">
+            <AuthRedirect ifLogged={true} to="/userpage">
               <Register />
             </AuthRedirect>
           </Route>
