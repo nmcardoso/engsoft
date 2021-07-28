@@ -63,6 +63,7 @@ function Formulario() {
   const validate = {
     nome: data => {
       let error
+      const tamMax = 30
       //impossibilitar que numeros sejam colocados
       if (data.length > 0) {
         if(parseInt(data.slice(-1))) {
@@ -72,9 +73,21 @@ function Formulario() {
           errorsDispatcher(newErrors) 
         }
         if (data.length < 1) error = 'Informe o Nome completo'
-        else if (data.length > 254) error = 'Nome muito grande'
-        return error
+        else if (data.length > tamMax) {
+          error = 'Nome muito grande'
+          valuesDispatcher({nome: data.slice(0,tamMax)}) 
+        }
+        //Sacanagenzinha de deixar primeira letra maiuscula
+        if (!error) {
+          const arr = data.split(" ");
+          for (var i = 0; i < arr.length; i++) 
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+          const str2 = arr.join(" ");
+
+          valuesDispatcher({nome: str2}) 
+        }
       }
+      return error
     },
     endereco: data => {
       let error
