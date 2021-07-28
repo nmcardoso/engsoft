@@ -135,6 +135,12 @@ function Formulario() {
     }
   }
 
+  const handleFormulario = () => {
+    const data = {
+
+    }
+  }
+
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 vw-100">
@@ -576,7 +582,12 @@ function Formulario() {
                 </div>
               </div>
               <div className="d-grid gap-2">
-                <button type="button" className="btn btn-primary btn-large mx-5 my-3">Enviar</button>
+                <button
+                  type="button"
+                  onClick={handleFormulario}
+                  className="btn btn-primary btn-large mx-5 my-3">
+                  Enviar
+                </button>
               </div>
             </form>
           </div>
