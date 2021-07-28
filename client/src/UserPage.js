@@ -107,7 +107,7 @@ function UserPage() {
                         className="spinner-border spinner-border-sm"
                         role="status"
                         aria-hidden="true" />
-                      &nbsp;&nbsp;&nbsp;Autenticando...
+                      &nbsp;&nbsp;&nbsp;Sincronizando...
                     </button>
                   ) : (
                     <button
