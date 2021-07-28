@@ -252,7 +252,7 @@ function Formulario() {
           return 'CPF inválido'
         return
       }
-      else if (!parseInt(data.slice(-1))) {
+      else if (!Number.isInteger(parseInt(data.slice(-1)))) {
         valuesDispatcher({ cpf: data.slice(0, -1) }) //tiro o 1ue foi colocado
         return 'Este campo aceita apenas números'
       }
