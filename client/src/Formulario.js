@@ -65,15 +65,14 @@ function Formulario() {
       let error
       //impossibilitar que numeros sejam colocados
       if (data.length > 0) {
-        if(!isNaN(data.slice(-1))) {
-
+        if(parseInt(data.slice(-1))) {
           const newValues = { nome:data.slice(0,-1)} 
           const newErrors = { nome: validate.nome(newValues.nome)} 
           valuesDispatcher(newValues) 
           errorsDispatcher(newErrors) 
         }
-        if (data.length < 1) error = 'Informe o endereço'
-        else if (data.length > 254) error = 'Endereço muito grande'
+        if (data.length < 1) error = 'Informe o Nome completo'
+        else if (data.length > 254) error = 'Nome muito grande'
         return error
       }
     },
