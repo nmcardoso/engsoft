@@ -40,7 +40,8 @@ app.get('/deploy', (req, res) => {
 app.get('/', (req, res) => {
   res.render('index', {
     NODE_ENV: process.env.NODE_ENV,
-    data: db
+    data: db,
+    ws: process.env.NODE_ENV === 'dev' ? 'ws://localhost:3333' : 'ws://engsoft-vacivida.glitch.me'
   })
 })
 
