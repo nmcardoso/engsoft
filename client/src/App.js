@@ -13,6 +13,7 @@ import { AuthProvider } from './AuthContext'
 import AuthRedirect from './AuthRedirect'
 import UserPage from './UserPage'
 import Feedback from './Feedback'
+import Welcome from './Welcome'
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <AuthRedirect ifLogged={true} to="/userpage">
+            <AuthRedirect ifLogged={true} to="/welcome">
               <Login />
             </AuthRedirect>
           </Route>
@@ -45,6 +46,11 @@ function App() {
           <Route path="/userpage">
             <AuthRedirect ifLogged={false} to="/login">
               <UserPage />
+            </AuthRedirect>
+          </Route>
+          <Route path="/welcome">
+            <AuthRedirect ifLogged={false} to="/login">
+              <Welcome />
             </AuthRedirect>
           </Route>
           <Route path="/feedback">
