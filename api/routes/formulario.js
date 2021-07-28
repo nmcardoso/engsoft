@@ -41,7 +41,8 @@ router.post('/', async (req, res) => {
     bairro: data.bairro,
     complemento: data.complemento,
     cep: data.cep,
-    municipio_residencia: data.municipio_residencia
+    municipio_residencia: data.municipio_residencia,
+    uf: data.uf
   })
 
   try {
