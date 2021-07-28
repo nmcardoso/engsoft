@@ -3,6 +3,7 @@ import './Formulario.css'
 import { Link } from 'react-router-dom'
 import { useReducer, useState } from 'react'
 import CepApi from './services/CepApi'
+import API from './services/API'
 
 
 const validationClass = (cls, touched, error) => {
@@ -10,46 +11,46 @@ const validationClass = (cls, touched, error) => {
   return error ? cls + ' is-invalid' : cls + ' is-valid'
 }
 const validaCPF = function (cpf) {
-    var sum = 0;
-    var remainder;
+  var sum = 0;
+  var remainder;
 
 
-    var allEqual = true;
-    for (var i = 0; i < cpf.length - 1; i++) {
-        if (cpf[i] != cpf[i + 1])
-            allEqual = false;
-    }
-    if (allEqual)
-        return false;
+  var allEqual = true;
+  for (var i = 0; i < cpf.length - 1; i++) {
+    if (cpf[i] != cpf[i + 1])
+      allEqual = false;
+  }
+  if (allEqual)
+    return false;
 
-    for (i = 1; i <= 9; i++)
-        sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-    remainder = (sum * 10) % 11;
+  for (i = 1; i <= 9; i++)
+    sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+  remainder = (sum * 10) % 11;
 
-    if ((remainder == 10) || (remainder == 11))
-        remainder = 0;
-    if (remainder != parseInt(cpf.substring(9, 10)))
-        return false;
+  if ((remainder == 10) || (remainder == 11))
+    remainder = 0;
+  if (remainder != parseInt(cpf.substring(9, 10)))
+    return false;
 
-    sum = 0;
-    for (i = 1; i <= 10; i++)
-        sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i); remainder = (sum * 10) % 11;
+  sum = 0;
+  for (i = 1; i <= 10; i++)
+    sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i); remainder = (sum * 10) % 11;
 
-    if ((remainder == 10) || (remainder == 11))
-        remainder = 0;
-    if (remainder != parseInt(cpf.substring(10, 11)))
-        return false;
+  if ((remainder == 10) || (remainder == 11))
+    remainder = 0;
+  if (remainder != parseInt(cpf.substring(10, 11)))
+    return false;
 
-    return true;
+  return true;
 }
 
 function rand(n) {
-    var ranNum = Math.round(Math.random() * n);
-    return ranNum;
+  var ranNum = Math.round(Math.random() * n);
+  return ranNum;
 }
 
 function mod(numerator, denominator) {
-    return Math.round(numerator - (Math.floor(numerator / denominator) * denominator));
+  return Math.round(numerator - (Math.floor(numerator / denominator) * denominator));
 }
 
 const fields = [
@@ -82,7 +83,7 @@ function errorsReducer(state, action) {
 
 function primeirasMaiusculas(string) {
   const arr = string.split(" ");
-  for (var i = 0; i < arr.length; i++) 
+  for (var i = 0; i < arr.length; i++)
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
   const str2 = arr.join(" ")
 
@@ -104,6 +105,63 @@ function Formulario() {
   const [etnia, setEtnia] = useState('Escolher')
   const [gestante, setGestante] = useState(false)
   const [puerpera, setPuerpera] = useState(false)
+  const [telefone, setTelefone] = useState('')
+
+
+  const resetForm = () => {
+    setNascimento('')
+    setSexo('Escolher')
+    setLote('')
+    setLab('Escolher')
+    setDose('Escolher')
+    setEtnia('Escolher')
+    setGestante(false)
+    setPuerpera(false)
+    setTelefone('')
+    valuesDispatcher(Object.fromEntries(fields.map(e => [e, ''])))
+    errorsDispatcher(Object.fromEntries(fields.map(e => [e, undefined])))
+    setTouched(Object.fromEntries(fields.map(e => [e, false])))
+  }
+
+  const handleFormulario = async () => {
+    const data = {
+      id_unidade_saude: user.id_unidade_saude,
+      cpf: values.cpf,
+      telefone: telefone,
+      nome: values.nome,
+      data_nascimento: dataNascimento,
+      laboratorio: lab,
+      lote: lote,
+      data_vacinacao: new Date(),
+      dose: dose,
+      nome_mae: values.nomeMae,
+      nome_social: values.nomeSocial,
+      sexo: sexo,
+      raca: etnia,
+      gestante: gestante,
+      puerpera: puerpera,
+      zona: null,
+      logradouro: values.endereco,
+      numero: values.numero,
+      bairro: values.bairro,
+      complemento: values.complemento,
+      cep: values.cep
+    }
+
+    const api = new API()
+    try {
+      const r = await api.postFormulario(data)
+      if (r.data.success) {
+        alert('Formulario cadastrado com sucesso!')
+        resetForm()
+      } else {
+        alert('Erro ao enviar as informações ao servidor!')
+        console.log(r.data)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const touch = (field) => {
     if (!touched[field]) setTouched({ ...touched, [field]: true })
@@ -116,46 +174,46 @@ function Formulario() {
       const tamMin = 6
       if (data.length > 0) {
         //colocou numero
-        if(parseInt(data.slice(-1))) {
-          valuesDispatcher({nome: data.slice(0,-1)}) //tiro o numero 
+        if (parseInt(data.slice(-1))) {
+          valuesDispatcher({ nome: data.slice(0, -1) }) //tiro o numero
           return 'Este campo nao aceita números'
         }
-        if (data.length < tamMin) 
+        if (data.length < tamMin)
           error = 'Informe o Nome completo do paciente'
 
         else if (data.length > tamMax) {
           error = 'Nome muito grande'
-          valuesDispatcher({nome: data.slice(0,tamMax)}) 
+          valuesDispatcher({ nome: data.slice(0, tamMax) })
         }
 
         //Sacanagenzinha de deixar primeira letra maiuscula
-        if (!error || data.length < tamMin) 
-          valuesDispatcher({nome: primeirasMaiusculas(data)}) 
+        if (!error || data.length < tamMin)
+          valuesDispatcher({ nome: primeirasMaiusculas(data) })
       }
       return error
     },
-    
+
     nomeMae: data => {
       let error
       const tamMax = 40
       const tamMin = 6
       if (data.length > 0) {
         //colocou numero
-        if(parseInt(data.slice(-1))) {
-          valuesDispatcher({nomeMae: data.slice(0,-1)}) //tiro o numero 
+        if (parseInt(data.slice(-1))) {
+          valuesDispatcher({ nomeMae: data.slice(0, -1) }) //tiro o numero
           return 'Este campo nao aceita números'
         }
-        if (data.length < tamMin) 
+        if (data.length < tamMin)
           error = 'Informe o Nome completo da mãe do paciente'
 
         else if (data.length > tamMax) {
           error = 'Nome da mãe muito grande'
-          valuesDispatcher({nomeMae: data.slice(0,tamMax)}) 
+          valuesDispatcher({ nomeMae: data.slice(0, tamMax) })
         }
 
         //Sacanagenzinha de deixar primeira letra maiuscula
-        if (!error || data.length < tamMin) 
-          valuesDispatcher({nomeMae: primeirasMaiusculas(data)}) 
+        if (!error || data.length < tamMin)
+          valuesDispatcher({ nomeMae: primeirasMaiusculas(data) })
       }
       return error
     },
@@ -167,62 +225,62 @@ function Formulario() {
       const tamMin = 0
       if (data.length > 0) {
         //colocou numero
-        if(parseInt(data.slice(-1))) {
-          valuesDispatcher({nomeSocial: data.slice(0,-1)}) //tiro o numero 
+        if (parseInt(data.slice(-1))) {
+          valuesDispatcher({ nomeSocial: data.slice(0, -1) }) //tiro o numero
           error = 'Este campo nao aceita números'
         }
         else if (data.length > tamMax) {
           error = 'Nome da mãe muito grande'
-          valuesDispatcher({nomeSocial: data.slice(0,tamMax)}) 
+          valuesDispatcher({ nomeSocial: data.slice(0, tamMax) })
         }
       }
       return error
     },
-     cpf: data => {
+    cpf: data => {
       let error
       let cpf = data.replace('.', '')
         .replace('.', '').replace('.', '')
         .replace('-', '')
         .trim();
       if (cpf.length === 12) {
-        valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
-        cpf = cpf.slice(0,-1)
+        valuesDispatcher({ cpf: data.slice(0, -1) }) //tiro o 1ue foi colocado
+        cpf = cpf.slice(0, -1)
       }
       if (cpf.length === 11) {
-        if(!validaCPF(cpf))
+        if (!validaCPF(cpf))
           return 'CPF inválido'
         return
       }
-      if(!parseInt(data.slice(-1))) {
-        valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
+      if (!parseInt(data.slice(-1))) {
+        valuesDispatcher({ cpf: data.slice(0, -1) }) //tiro o 1ue foi colocado
         return 'Este campo aceita apenas números'
       }
-      if (cpf.length == 3 || cpf.length==6)
-        valuesDispatcher({cpf: data + '.'})
-      else if(cpf.length == 9)
-        valuesDispatcher({cpf: data + '-'})
+      if (cpf.length == 3 || cpf.length == 6)
+        valuesDispatcher({ cpf: data + '.' })
+      else if (cpf.length == 9)
+        valuesDispatcher({ cpf: data + '-' })
 
       return 'CPF inválido'
-     }, 
-     
-     
+    },
+
+
     nomeSocial: data => {
       let error
       const tamMax = 40
       const tamMin = 0
       if (data.length > 0) {
         //colocou numero
-        if(parseInt(data.slice(-1))) {
-          valuesDispatcher({nomeSocial: data.slice(0,-1)}) //tiro o numero 
+        if (parseInt(data.slice(-1))) {
+          valuesDispatcher({ nomeSocial: data.slice(0, -1) }) //tiro o numero
           error = 'Este campo nao aceita números'
         }
         else if (data.length > tamMax) {
           error = 'Nome da mãe muito grande'
-          valuesDispatcher({nomeSocial: data.slice(0,tamMax)}) 
+          valuesDispatcher({ nomeSocial: data.slice(0, tamMax) })
         }
       }
       return error
-    },   
+    },
     endereco: data => {
       let error
       if (data.length < 1) error = 'Informe o endereço'
@@ -293,12 +351,6 @@ function Formulario() {
       } else if (typeof newError === 'object' && newError !== null) {
         errorsDispatcher({ ...newError })
       }
-    }
-  }
-
-  const handleFormulario = () => {
-    const data = {
-
     }
   }
 
@@ -377,7 +429,7 @@ function Formulario() {
                     aria-label="Nome-Mae"
                     value={values.nomeMae}
                     aria-describedby="campo-nome-mae"
-                    onChange={e => handleFieldChange('nomeMae', e.target.value)}/>
+                    onChange={e => handleFieldChange('nomeMae', e.target.value)} />
                   {touched.nomeMae && errors.nomeMae && (
                     <div className="invalid-feedback">
                       {errors.nomeMae}
@@ -394,7 +446,7 @@ function Formulario() {
                     aria-label="Nome social"
                     value={values.nomeSocial}
                     aria-describedby="campo-nome-social"
-                    onChange={e => handleFieldChange('nomeSocial', e.target.value)}/>
+                    onChange={e => handleFieldChange('nomeSocial', e.target.value)} />
                   {touched.nomeSocial && errors.nomeSocial && (
                     <div className="invalid-feedback">
                       {errors.nomeSocial}
@@ -410,6 +462,7 @@ function Formulario() {
                     placeholder="data"
                     aria-label="Data de nascimento"
                     aria-describedby="campo-data"
+                    value={dataNascimento}
                     onChange={e => setNascimento(e.target.value)} />
                 </div>
 
@@ -457,7 +510,7 @@ function Formulario() {
                     aria-label="Número CPF"
                     value={values.cpf}
                     aria-describedby="campo-cpf"
-                    onChange={e => handleFieldChange('cpf', e.target.value)}/>
+                    onChange={e => handleFieldChange('cpf', e.target.value)} />
                   {touched.cpf && errors.cpf && (
                     <div className="invalid-feedback">
                       {errors.cpf}
@@ -473,6 +526,7 @@ function Formulario() {
                     placeholder="DD XXXXXXXXX"
                     aria-label="Telefone"
                     aria-describedby="campo-telefone"
+                    value={telefone}
                     onChange={e => setTelefone(e.target.value)} />
                 </div>
 
@@ -484,6 +538,7 @@ function Formulario() {
                     placeholder="Lote"
                     aria-label="Lote"
                     aria-describedby="campo-lote"
+                    value={lote}
                     onChange={e => setLote(e.target.value)} />
                 </div>
 
@@ -529,14 +584,14 @@ function Formulario() {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={e => setDose(e.target.textContent)}>
+                        onClick={e => setDose(1)}>
                         1ª
                       </a>
                     </li>
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={e => setDose(e.target.textContent)}>
+                        onClick={e => setDose(2)}>
                         2ª
                       </a>
                     </li>
@@ -601,6 +656,7 @@ function Formulario() {
                       id='declaracao_gestante'
                       aria-label="Gestante"
                       aria-describedby="campo-gestante"
+                      checked={gestante}
                       onClick={e => setGestante(e.target.checked)} />
                   </div>
                 </div>
@@ -614,6 +670,7 @@ function Formulario() {
                       id='declaracao_puerpera'
                       aria-label="Puerpera"
                       aria-describedby="campo-puerpera"
+                      checked={puerpera}
                       onClick={e => setPuerpera(e.target.checked)} />
                   </div>
                 </div>
@@ -630,7 +687,7 @@ function Formulario() {
                     onBlur={e => handleFieldChange('cep', e.target.value)}
                     onChange={e => handleFieldChange('cep', e.target.value)} />
                   {fetchingCep && (
-                    <div className="d-flex align-items-center justify-content-center text-light">
+                    <div className="d-flex align-items-center justify-content-center text-secondary">
                       <span className="spinner-border spinner-border-sm me-2 ms-3" role="status" aria-hidden="true"></span>
                       <span>Carregando...</span>
                     </div>
