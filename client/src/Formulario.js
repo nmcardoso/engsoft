@@ -9,6 +9,48 @@ const validationClass = (cls, touched, error) => {
   if (!touched) return cls
   return error ? cls + ' is-invalid' : cls + ' is-valid'
 }
+const validaCPF = function (cpf) {
+    var sum = 0;
+    var remainder;
+
+
+    var allEqual = true;
+    for (var i = 0; i < cpf.length - 1; i++) {
+        if (cpf[i] != cpf[i + 1])
+            allEqual = false;
+    }
+    if (allEqual)
+        return false;
+
+    for (i = 1; i <= 9; i++)
+        sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+    remainder = (sum * 10) % 11;
+
+    if ((remainder == 10) || (remainder == 11))
+        remainder = 0;
+    if (remainder != parseInt(cpf.substring(9, 10)))
+        return false;
+
+    sum = 0;
+    for (i = 1; i <= 10; i++)
+        sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i); remainder = (sum * 10) % 11;
+
+    if ((remainder == 10) || (remainder == 11))
+        remainder = 0;
+    if (remainder != parseInt(cpf.substring(10, 11)))
+        return false;
+
+    return true;
+}
+
+function rand(n) {
+    var ranNum = Math.round(Math.random() * n);
+    return ranNum;
+}
+
+function mod(numerator, denominator) {
+    return Math.round(numerator - (Math.floor(numerator / denominator) * denominator));
+}
 
 const fields = [
   'nome',
@@ -71,25 +113,114 @@ function Formulario() {
     nome: data => {
       let error
       const tamMax = 40
-      //impossibilitar que numeros sejam colocados
+      const tamMin = 6
       if (data.length > 0) {
+        //colocou numero
         if(parseInt(data.slice(-1))) {
-          const newValues = { nome:data.slice(0,-1)} 
-          const newErrors = { nome: validate.nome(newValues.nome)} 
-          valuesDispatcher(newValues) 
-          errorsDispatcher(newErrors) 
+          valuesDispatcher({nome: data.slice(0,-1)}) //tiro o numero 
+          return 'Este campo nao aceita números'
         }
-        if (data.length < 1) error = 'Informe o Nome completo'
+        if (data.length < tamMin) 
+          error = 'Informe o Nome completo do paciente'
+
         else if (data.length > tamMax) {
           error = 'Nome muito grande'
           valuesDispatcher({nome: data.slice(0,tamMax)}) 
         }
+
         //Sacanagenzinha de deixar primeira letra maiuscula
-        if (!error) 
+        if (!error || data.length < tamMin) 
           valuesDispatcher({nome: primeirasMaiusculas(data)}) 
       }
       return error
     },
+    
+    nomeMae: data => {
+      let error
+      const tamMax = 40
+      const tamMin = 6
+      if (data.length > 0) {
+        //colocou numero
+        if(parseInt(data.slice(-1))) {
+          valuesDispatcher({nomeMae: data.slice(0,-1)}) //tiro o numero 
+          return 'Este campo nao aceita números'
+        }
+        if (data.length < tamMin) 
+          error = 'Informe o Nome completo da mãe do paciente'
+
+        else if (data.length > tamMax) {
+          error = 'Nome da mãe muito grande'
+          valuesDispatcher({nomeMae: data.slice(0,tamMax)}) 
+        }
+
+        //Sacanagenzinha de deixar primeira letra maiuscula
+        if (!error || data.length < tamMin) 
+          valuesDispatcher({nomeMae: primeirasMaiusculas(data)}) 
+      }
+      return error
+    },
+
+    nomeSocial: data => {
+      let error
+      console.log(data)
+      const tamMax = 40
+      const tamMin = 0
+      if (data.length > 0) {
+        //colocou numero
+        if(parseInt(data.slice(-1))) {
+          valuesDispatcher({nomeSocial: data.slice(0,-1)}) //tiro o numero 
+          error = 'Este campo nao aceita números'
+        }
+        else if (data.length > tamMax) {
+          error = 'Nome da mãe muito grande'
+          valuesDispatcher({nomeSocial: data.slice(0,tamMax)}) 
+        }
+      }
+      return error
+    },
+     cpf: data => {
+      let error
+      let cpf = data.replace('.', '')
+        .replace('.', '').replace('.', '')
+        .replace('-', '')
+        .trim();
+      if (cpf.length === 12)
+        valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
+      if (cpf.length === 11) {
+        if(!validaCPF(cpf))
+          return 'CPF inválido'
+        return
+      }
+      if(!parseInt(data.slice(-1))) {
+        valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
+        return 'Este campo aceita apenas números'
+      }
+      if (cpf.length == 3 || cpf.length==6)
+        valuesDispatcher({cpf: data + '.'})
+      else if(cpf.length == 9)
+        valuesDispatcher({cpf: data + '-'})
+
+      return 'CPF inválido'
+     }, 
+     
+     
+    nomeSocial: data => {
+      let error
+      const tamMax = 40
+      const tamMin = 0
+      if (data.length > 0) {
+        //colocou numero
+        if(parseInt(data.slice(-1))) {
+          valuesDispatcher({nomeSocial: data.slice(0,-1)}) //tiro o numero 
+          error = 'Este campo nao aceita números'
+        }
+        else if (data.length > tamMax) {
+          error = 'Nome da mãe muito grande'
+          valuesDispatcher({nomeSocial: data.slice(0,tamMax)}) 
+        }
+      }
+      return error
+    },   
     endereco: data => {
       let error
       if (data.length < 1) error = 'Informe o endereço'
@@ -229,27 +360,38 @@ function Formulario() {
                     </div>
                   )}
                 </div>
-
                 <div className="input-group input-group-lg mb-3 px-5">
-                  <span className="input-group-text" id="basic-addon1">Nome da mãe</span>
+                  <span className="input-group-text" id="basic-addon1">Nome da Mãe</span>
                   <input
                     type="text"
-                    className="form-control"
-                    placeholder="Nome da mãe"
-                    aria-label="Nome da mãe"
-                    aria-describedby="campo-nome-mãe"
-                    onChange={e => setNomeMae(e.target.value)} />
+                    className={validationClass('form-control', touched.nomeMae, errors.nomeMae)}
+                    placeholder="Nome Mae"
+                    aria-label="Nome-Mae"
+                    value={values.nomeMae}
+                    aria-describedby="campo-nome-mae"
+                    onChange={e => handleFieldChange('nomeMae', e.target.value)}/>
+                  {touched.nomeMae && errors.nomeMae && (
+                    <div className="invalid-feedback">
+                      {errors.nomeMae}
+                    </div>
+                  )}
                 </div>
 
                 <div className="input-group input-group-lg mb-3 px-5">
                   <span className="input-group-text" id="basic-addon1">Nome social</span>
                   <input
                     type="text"
-                    className="form-control"
                     placeholder="Nome social"
+                    className={validationClass('form-control', touched.nomeSocial, errors.nomeSocial)}
                     aria-label="Nome social"
+                    value={values.nomeSocial}
                     aria-describedby="campo-nome-social"
-                    onChange={e => setNomeSocial(e.target.value)} />
+                    onChange={e => handleFieldChange('nomeSocial', e.target.value)}/>
+                  {touched.nomeSocial && errors.nomeSocial && (
+                    <div className="invalid-feedback">
+                      {errors.nomeSocial}
+                    </div>
+                  )}
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
@@ -302,11 +444,17 @@ function Formulario() {
                   <span className="input-group-text" id="basic-addon1">CPF</span>
                   <input
                     type="text"
-                    className="form-control"
+                    className={validationClass('form-control', touched.cpf, errors.cpf)}
                     placeholder="CPF"
                     aria-label="Número CPF"
+                    value={values.cpf}
                     aria-describedby="campo-cpf"
-                    onChange={e => setCPF(e.target.value)} />
+                    onChange={e => handleFieldChange('cpf', e.target.value)}/>
+                  {touched.cpf && errors.cpf && (
+                    <div className="invalid-feedback">
+                      {errors.cpf}
+                    </div>
+                  )}
                 </div>
 
                 <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
