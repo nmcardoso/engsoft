@@ -35,9 +35,9 @@ function PowerBI() {
                   Formulário ✏️️
                 </button>
               </Link>
-              <Link to="/powerbi">
+              <Link to="/userpage">
                 <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
-                  Análise 📊
+                  Usuário 🏠
                 </button>
               </Link>
               <Link to="/feedback">
