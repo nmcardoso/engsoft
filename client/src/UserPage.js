@@ -32,7 +32,7 @@ function UserPage() {
           <div className="bg-light pb-3 pt-1 mx-5 px-4 d-flex justify-content-center">
             {/* colocar as coisas que vao dentro da navbar aqui */}
 
-            <div className="ContainerButton d-inline align-middle">
+            <div className="ContainerButton d-flex align-middle">
               <Link to="/formulario">
                 <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
                   Formulário ✏️️
