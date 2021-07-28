@@ -64,21 +64,18 @@ function Formulario() {
     nome: data => {
       let error
       //impossibilitar que numeros sejam colocados
-      if(!isNaN(data.slice(-1))) {
+      if (data.length > 0) {
+        if(!isNaN(data.slice(-1))) {
 
-        const newValues = { 
-          nome:data.slice(0,-1)
-        } 
-        const newErrors = { 
-          nome: validate.nome(newValues.nome),  
-        } 
-
-        valuesDispatcher(newValues) 
-        errorsDispatcher(newErrors) 
+          const newValues = { nome:data.slice(0,-1)} 
+          const newErrors = { nome: validate.nome(newValues.nome)} 
+          valuesDispatcher(newValues) 
+          errorsDispatcher(newErrors) 
+        }
+        if (data.length < 1) error = 'Informe o endereço'
+        else if (data.length > 254) error = 'Endereço muito grande'
+        return error
       }
-      if (data.length < 1) error = 'Informe o endereço'
-      else if (data.length > 254) error = 'Endereço muito grande'
-      return error
     },
     endereco: data => {
       let error
