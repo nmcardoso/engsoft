@@ -38,7 +38,14 @@ function errorsReducer(state, action) {
   return { ...state, ...action }
 }
 
+function primeirasMaiusculas(string) {
+  const arr = string.split(" ");
+  for (var i = 0; i < arr.length; i++) 
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+  const str2 = arr.join(" ")
 
+  return str2
+}
 function Formulario() {
   const { user } = useAuth()
 
@@ -63,7 +70,7 @@ function Formulario() {
   const validate = {
     nome: data => {
       let error
-      const tamMax = 30
+      const tamMax = 40
       //impossibilitar que numeros sejam colocados
       if (data.length > 0) {
         if(parseInt(data.slice(-1))) {
@@ -78,14 +85,8 @@ function Formulario() {
           valuesDispatcher({nome: data.slice(0,tamMax)}) 
         }
         //Sacanagenzinha de deixar primeira letra maiuscula
-        if (!error) {
-          const arr = data.split(" ");
-          for (var i = 0; i < arr.length; i++) 
-            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-          const str2 = arr.join(" ");
-
-          valuesDispatcher({nome: str2}) 
-        }
+        if (!error) 
+          valuesDispatcher({nome: primeirasMaiusculas(data)}) 
       }
       return error
     },
@@ -148,7 +149,6 @@ function Formulario() {
   }
 
   const handleFieldChange = (field, data, e) => {
-    console.log(field, data)
     valuesDispatcher({ [field]: data })
 
     touch(field)
