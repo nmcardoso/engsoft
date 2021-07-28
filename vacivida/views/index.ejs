@@ -218,7 +218,7 @@
       insert(initialData[i], false)
     }
 
-    const socket = io(<%- ws ->)
+    const socket = io(<%- ws %>)
     socket.on('new_form', data => {
       console.log(data)
       insert(data, true)
