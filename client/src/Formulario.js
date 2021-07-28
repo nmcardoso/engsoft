@@ -105,7 +105,6 @@ function Formulario() {
   const [etnia, setEtnia] = useState('Escolher')
   const [gestante, setGestante] = useState(false)
   const [puerpera, setPuerpera] = useState(false)
-  const [telefone, setTelefone] = useState('')
 
 
   const resetForm = () => {
@@ -117,7 +116,6 @@ function Formulario() {
     setEtnia('Escolher')
     setGestante(false)
     setPuerpera(false)
-    setTelefone('')
     valuesDispatcher(Object.fromEntries(fields.map(e => [e, ''])))
     errorsDispatcher(Object.fromEntries(fields.map(e => [e, undefined])))
     setTouched(Object.fromEntries(fields.map(e => [e, false])))
@@ -127,7 +125,7 @@ function Formulario() {
     const data = {
       id_unidade_saude: user.id_unidade_saude,
       cpf: values.cpf,
-      telefone: telefone,
+      telefone: values.telefone,
       nome: values.nome,
       data_nascimento: dataNascimento,
       laboratorio: lab,
@@ -145,7 +143,9 @@ function Formulario() {
       numero: values.numero,
       bairro: values.bairro,
       complemento: values.complemento,
-      cep: values.cep
+      cep: values.cep,
+      uf: values.uf,
+      municipio_residencia: values.municipio
     }
 
     const api = new API()
