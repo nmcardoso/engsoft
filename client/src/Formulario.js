@@ -223,6 +223,14 @@ function Formulario() {
       }
       return error
     },   
+    telefone: data => {
+      let error
+      if(!parseInt(data.slice(-1))) {
+        valuesDispatcher({telefone: data.slice(0,-1)}) //tiro o 1ue foi colocado 
+        return 'Este campo aceita apenas números'
+      }
+      return error
+    },
     endereco: data => {
       let error
       if (data.length < 1) error = 'Informe o endereço'
@@ -466,9 +474,15 @@ function Formulario() {
                     className="form-control"
                     placeholder="DD XXXXXXXXX"
                     aria-label="Telefone"
+                    value={values.telefone}
                     aria-describedby="campo-telefone"
-                    onChange={e => setTelefone(e.target.value)} />
-                </div>
+                    onChange={e => handleFieldChange('telefone', e.target.value)}/>
+                    {touched.telefone && errors.telefone && (
+                      <div className="invalid-feedback">
+                        {errors.telefone}
+                      </div>
+                    )}
+                  </div>
 
                 <div className="input-group input-group-lg mb-3 ps-5 pe-1 w-50">
                   <span className="input-group-text" id="basic-addon1">Lote</span>
