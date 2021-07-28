@@ -8,7 +8,6 @@ function Home() {
   return (
     <>
       <div>
-        <HomeButton />
         <div className="page-container">
           <div className="banner-wrapper d-none d-md-block">
             <div className="gov-logo"></div>
