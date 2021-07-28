@@ -162,7 +162,6 @@ function Formulario() {
 
     nomeSocial: data => {
       let error
-      console.log(data)
       const tamMax = 40
       const tamMin = 0
       if (data.length > 0) {
@@ -184,19 +183,22 @@ function Formulario() {
         .replace('.', '').replace('.', '')
         .replace('-', '')
         .trim();
-      if (cpf.length === 12) {
-        valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
-        cpf = cpf.slice(0,-1)
-      }
-      if (cpf.length === 11) {
+      
+      if (cpf.length > 10) { //ja ta preenchido, soh retirar
+
+        if (cpf.length === 12) {
+          valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado
+          cpf = cpf.slice(0,-1)
+        }
         if(!validaCPF(cpf))
           return 'CPF inválido'
         return
       }
-      if(!parseInt(data.slice(-1))) {
+      else if(!parseInt(data.slice(-1))) {
         valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
         return 'Este campo aceita apenas números'
       }
+      
       if (cpf.length == 3 || cpf.length==6)
         valuesDispatcher({cpf: data + '.'})
       else if(cpf.length == 9)
@@ -225,11 +227,30 @@ function Formulario() {
     },   
     telefone: data => {
       let error
-      if(!parseInt(data.slice(-1))) {
-        valuesDispatcher({telefone: data.slice(0,-1)}) //tiro o 1ue foi colocado 
-        return 'Este campo aceita apenas números'
+      let telefone = data.replace('(', '')
+        .replace(')', '').replace('.', '')
+        .replace('-', '').replace(' ','')
+        .trim();
+      if (telefone.length > 10) { //ja ta preenchido, soh retirar
+
+        if (telefone.length === 12) {
+          valuesDispatcher({telefone: data.slice(0,-1)}) //tiro o 1ue foi colocado
+          telefone = telefone.slice(0,-1)
+        }
+        return
       }
-      return error
+
+      if(!parseInt(data.slice(-1))) {
+        valuesDispatcher({telefone: data.slice(0,-1)}) //coiso 
+        return 'Este campo aceita apenas numeros'
+      }
+      if (telefone.length === 2) {
+        valuesDispatcher({telefone: '(' + telefone +') '})
+      }
+      else if(telefone.length === 7)
+        valuesDispatcher({telefone: data + '-'})
+
+      return 'Telefone incompleto'
     },
     endereco: data => {
       let error
@@ -471,7 +492,7 @@ function Formulario() {
                   <span className="input-group-text" id="basic-addon1">Telefone</span>
                   <input
                     type="text"
-                    className="form-control"
+                    className={validationClass('form-control', touched.telefone, errors.telefone)}
                     placeholder="DD XXXXXXXXX"
                     aria-label="Telefone"
                     value={values.telefone}
