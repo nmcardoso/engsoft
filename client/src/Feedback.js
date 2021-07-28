@@ -3,9 +3,8 @@ import './Feedback.css'
 import { Link } from 'react-router-dom'
 import { useReducer, useState } from 'react'
 
-function Feedback () {
-
-  const { user }  = useAuth()
+function Feedback() {
+  const { user } = useAuth()
 
   const [feedback, setFeedback] = useState('')
   const [nome, setNome] = useState('')
@@ -78,15 +77,16 @@ function Feedback () {
             </div>
             <div className="inputWraper">
               <label htmlFor="exampleFormControlTextarea1" className="titles form-label">Feedback:</label>
-              <textarea 
-                className="form-control" 
-                id="exampleFormControlTextarea1" 
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
                 rows="5"
+                value={feedback}
                 onChange={e => setFeedback(e.target.value)} />
             </div>
             <div className="d-grid gap-2">
 
-            {loading ? (
+              {loading ? (
                 <button
                   className="btn btn-dark btn-large mx-0 my-3"
                   type="submit"
@@ -98,9 +98,13 @@ function Feedback () {
                   &nbsp;&nbsp;&nbsp;Solicitando...
                 </button>
               ) : (
-                <button 
-                  type="submit" 
-                  className="btn btn-dark btn-large mx-0 my-3">
+                <button
+                  type="submit"
+                  className="btn btn-dark btn-large mx-0 my-3"
+                  onClick={() => {
+                    alert('Feedback enviado aos desenvolvedores')
+                    setFeedback('')
+                  }}>
                   Enviar
                 </button>
               )}
@@ -108,7 +112,7 @@ function Feedback () {
           </form>
         </div>
       </div>
-    </div>   
+    </div>
   )
 }
 
