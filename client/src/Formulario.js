@@ -61,6 +61,25 @@ function Formulario() {
   }
 
   const validate = {
+    nome: data => {
+      let error
+      //impossibilitar que numeros sejam colocados
+      if(!isNaN(data.slice(-1))) {
+
+        const newValues = { 
+          nome:data.slice(0,-1)
+        } 
+        const newErrors = { 
+          nome: validate.nome(newValues.nome),  
+        } 
+
+        valuesDispatcher(newValues) 
+        errorsDispatcher(newErrors) 
+      }
+      if (data.length < 1) error = 'Informe o endereço'
+      else if (data.length > 254) error = 'Endereço muito grande'
+      return error
+    },
     endereco: data => {
       let error
       if (data.length < 1) error = 'Informe o endereço'
@@ -189,12 +208,17 @@ function Formulario() {
                   <span className="input-group-text" id="basic-addon1">Nome</span>
                   <input
                     type="text"
-                    className={validationClass
-                      ('form-control', touched.nome, errors.nome)}
+                    className={validationClass('form-control', touched.nome, errors.nome)}
                     placeholder="Nome paciente"
                     aria-label="Nome"
+                    value={values.nome}
                     aria-describedby="campo-nome"
-                    onChange={e => setNome(e.target.value)} />
+                    onChange={e => handleFieldChange('nome', e.target.value)} />
+                  {touched.nome && errors.nome && (
+                    <div className="invalid-feedback">
+                      {errors.nome}
+                    </div>
+                  )}
                 </div>
 
                 <div className="input-group input-group-lg mb-3 px-5">
