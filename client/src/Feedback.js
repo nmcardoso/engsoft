@@ -101,7 +101,8 @@ function Feedback() {
                 <button
                   type="submit"
                   className="btn btn-dark btn-large mx-0 my-3"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     alert('Feedback enviado aos desenvolvedores')
                     setFeedback('')
                   }}>
