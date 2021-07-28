@@ -1,11 +1,15 @@
 const express = require('express')
 const { validationResult } = require('express-validator')
+const { Op } = require('sequelize')
+const db = require('../config/database')
 const { formChain } = require('../middleware/validation_chains')
 const Formulario = require('../models/Formulario')
+const UnidadeSaude = require('../models/UnidadeSaude')
+const VacividaAPI = require('../services/VacividaAPI')
 
 const router = express.Router()
 
-router.post('/', formChain, async (req, res) => {
+router.post('/', async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.json({
@@ -115,6 +119,19 @@ router.get('/sync/:id', async (req, res) => {
   } catch (err) {
     console.log(err)
     res.json({ sucess: false })
+  }
+})
+
+router.get('/unsynced/:id', async (req, res) => {
+  try {
+    const idUnidade = req.params.id
+
+    const { count } = await getUnsyncedForms(idUnidade)
+
+    res.json({ success: true, count })
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ success: false })
   }
 })
 
