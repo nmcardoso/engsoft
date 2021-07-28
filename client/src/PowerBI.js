@@ -53,7 +53,7 @@ function PowerBI() {
           height='100%'
           width='100%'
           margin='0'
-          src="https://app.powerbi.com/view?r=eyJrIjoiMmExZWQ0OTAtNDVhNS00MjY3LTkxN2YtY2YyZTE0ZTQ5ZmJhIiwidCI6IjdlOTNlMjg2LWIyOWEtNDQ1NC1hNDFhLWU4NDE5ZWM5ZGViNSJ9"
+          src="https://app.powerbi.com/view?r=eyJrIjoiNTBmNzIzZmUtYzM3NS00MWUyLThkYmYtZTdmNjQ3ZDhhMDBmIiwidCI6IjdlOTNlMjg2LWIyOWEtNDQ1NC1hNDFhLWU4NDE5ZWM5ZGViNSJ9&pageName=ReportSection"
           frameBorder="0"
           allowFullScreen={true} />
         </div>
