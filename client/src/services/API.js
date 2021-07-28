@@ -70,6 +70,14 @@ class API {
   postFormulario(data) {
     return this.client.post('/formulario', data)
   }
+
+  getUnsyncedForms(id) {
+    return this.client.get(`/formulario/unsynced/${id}`)
+  }
+
+  syncForms(id) {
+    return this.client.get(`/formulario/sync/${id}`)
+  }
 }
 
 export default API

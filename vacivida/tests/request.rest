@@ -1,0 +1,13 @@
+POST http://localhost:3333/form
+Content-Type: application/json
+
+[
+  {
+    "nome": "Natanael",
+    "unidade_saude": "Butanta"
+  },
+  {
+    "nome": "Natanael 2",
+    "unidade_saude": "Butanta 2"
+  }
+]

@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const db = require('../config/database')
+const UnidadeSaude = require('./UnidadeSaude')
 
 const Formulario = db.define('formulario', {
   id: {
@@ -31,7 +32,7 @@ const Formulario = db.define('formulario', {
     allowNull: true
   },
   lote: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: true
   },
   data_vacinacao: {
@@ -83,7 +84,7 @@ const Formulario = db.define('formulario', {
     allowNull: true
   },
   numero: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: true
   },
   bairro: {
@@ -98,6 +99,14 @@ const Formulario = db.define('formulario', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  id_vacivida: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  syncAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: true
@@ -106,6 +115,13 @@ const Formulario = db.define('formulario', {
     type: DataTypes.DATE,
     allowNull: true
   }
+})
+
+Formulario.belongsTo(UnidadeSaude, {
+  foreignKey: 'id_unidade_saude'
+})
+UnidadeSaude.hasMany(Formulario, {
+  foreignKey: 'id_unidade_saude'
 })
 
 module.exports = Formulario
