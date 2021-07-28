@@ -11,6 +11,11 @@ const validationClass = (cls, touched, error) => {
 }
 
 const fields = [
+  'nome',
+  'nomeMae',
+  'nomeSocial',
+  'cpf',
+  'telefone',
   'cep',
   'endereco',
   'uf',
@@ -42,13 +47,8 @@ function Formulario() {
   const [touched, setTouched] = useState(initialTouched)
   const [fetchingCep, isFetchingCep] = useState(false)
 
-  const [nome, setNome] = useState('')
-  const [nomeMae, setNomeMae] = useState('')
-  const [nomeSocial, setNomeSocial] = useState('')
   const [dataNascimento, setNascimento] = useState('')
   const [sexo, setSexo] = useState('Escolher')
-  const [cpf, setCPF] = useState('')
-  const [telefone, setTelefone] = useState('')
   const [lote, setLote] = useState('')
   const [lab, setLab] = useState('Escolher')
   const [dose, setDose] = useState('Escolher')
