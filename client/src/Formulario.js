@@ -366,9 +366,6 @@ function Formulario() {
         </div>
       ) : (
         <div className="pageContainer">
-          <div className='fadeOut'>
-            Bem Vindo, <b>{user.nome}</b>
-          </div>
           <div className="fadeIn">
             <nav className="navbar navbar-light bg-light rounded-top mx-5 mt-3">
               <div className="container-fluid">
@@ -385,7 +382,7 @@ function Formulario() {
 
                 {/* colocar as coisas que vao dentro da navbar aqui */}
 
-                <div className="ContainerButton d-flex align-middle mt-5">
+                <div className="ContainerButton d-flex align-middle">
                   <Link
                     to='/userpage'>
                     <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Usuário 🏠</button>
@@ -404,7 +401,7 @@ function Formulario() {
 
             <form>
               <div className="ContainerForm">
-                <div className="input-group input-group-lg mb-3 px-5 mt-5 w-100" id='inputTipo1'>
+                <div className="input-group input-group-lg mb-3 px-5 mt-3 w-100" id='inputTipo1'>
                   <span className="input-group-text" id="basic-addon1">Nome</span>
                   <input
                     type="text"

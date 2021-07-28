@@ -44,17 +44,17 @@ function Feedback () {
 
             <div className="ContainerButton d-flex align-middle">
               <Link to="/formulario">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
                   Formulário ✏️️
                 </button>
               </Link>
               <Link to="/powerbi">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
                   Análise 📊
                 </button>
               </Link>
               <Link to="/userpage">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
                   Usuário 🏠
                 </button>
               </Link>

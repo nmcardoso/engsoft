@@ -64,18 +64,21 @@ function UserPage() {
 
             {/* colocar as coisas que vao dentro da navbar aqui */}
 
-            <div className="ContainerButton d-inline align-middle">
-              <Link
-                to='/dashboard'>
-                <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Formulário ✏️️</button>
+            <div className="ContainerButton d-flex align-middle">
+              <Link to="/formulario">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                  Formulário ✏️️
+                </button>
               </Link>
-              <Link
-                to='/powerbi'>
-                <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Análise 📊</button>
+              <Link to="/powerbi">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                  Análise 📊
+                </button>
               </Link>
-              <Link
-                to='/#'>
-                <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Feedack 🔁</button>
+              <Link to="/feedback">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                  Feedack 🔁
+                </button>
               </Link>
             </div>
           </div>

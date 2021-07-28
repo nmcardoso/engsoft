@@ -31,17 +31,17 @@ function PowerBI() {
 
             <div className="ContainerButton d-flex align-middle">
               <Link to="/formulario">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
                   Formulário ✏️️
                 </button>
               </Link>
-              <Link to="/powerbi">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
-                  Análise 📊
+              <Link to="/userpage">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                  Usuário 🏠
                 </button>
               </Link>
               <Link to="/feedback">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-success mx-2">
+                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
                   Feedack 🔁
                 </button>
               </Link>
