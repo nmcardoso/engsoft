@@ -186,7 +186,7 @@
       const $jsonContent = getComponent(itemClone, 'json-content')
       const $jsonPre = getComponent(itemClone, 'json-pre')
 
-      const title = data.id + ' | ' +  data.nome + ' | ' data?.unidade_saude.nome
+      const title = `${data.id} | ${data.nome} | ${data.unidade_saude.nome}`
       $accordionButton.appendChild(getTitleElement(title, isNew))
       $accordionButton.setAttribute('data-bs-target', '#collapse-' + data.id)
       $collapse.id = 'collapse-' + data.id
