@@ -91,7 +91,8 @@ function UserPage() {
           <hr />
 
           {unsynced === undefined ? (
-            <span className="text-secondary spinner-border spinner-border-sm">
+            <span className="text-secondary">
+              <span className="spinner-border spinner-border-sm"></span>
               &nbsp;&nbsp;&nbsp;Carregando dados de sincronização dos formulários...
             </span>
           ) : (
