@@ -95,7 +95,7 @@
     <div class="accordion mt-2">
       <div class="accordion-item" data-component="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#"
+          <button class="accordion-button collapsed text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#"
             data-component="accordion-button"></button>
         </h2>
         <div id="" class="accordion-collapse collapse" data-component="collapse">
@@ -186,7 +186,8 @@
       const $jsonContent = getComponent(itemClone, 'json-content')
       const $jsonPre = getComponent(itemClone, 'json-pre')
 
-      $accordionButton.appendChild(getTitleElement(data.id, isNew))
+      const title = data.id + ' | ' +  data.nome + ' | ' data?.unidade_saude.nome
+      $accordionButton.appendChild(getTitleElement(title, isNew))
       $accordionButton.setAttribute('data-bs-target', '#collapse-' + data.id)
       $collapse.id = 'collapse-' + data.id
       $parsedButton.setAttribute('data-bs-target', '#parsed-' + data.id)
@@ -217,7 +218,7 @@
       insert(initialData[i], false)
     }
 
-    const socket = io('ws://localhost:3333')
+    const socket = io(<%- ws ->)
     socket.on('new_form', data => {
       console.log(data)
       insert(data, true)
