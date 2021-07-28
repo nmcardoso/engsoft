@@ -172,18 +172,18 @@ function Formulario() {
 
                 {/* colocar as coisas que vao dentro da navbar aqui */}
 
-                <div className="ContainerButton d-inline align-middle">
+                <div className="ContainerButton d-flex align-middle mt-5">
                   <Link
                     to='/userpage'>
-                    <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Usuário 🏠</button>
+                    <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Usuário 🏠</button>
                   </Link>
                   <Link
                     to='/powerbi'>
-                    <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Análise 📊</button>
+                    <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Análise 📊</button>
                   </Link>
                   <Link
-                    to='/#'>
-                    <button className='btn btn-light fw-bold py-3 px-5 border border-success mx-2'>Feedback 🔁</button>
+                    to='/feedback'>
+                    <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Feedback 🔁</button>
                   </Link>
                 </div>
               </div>
@@ -333,21 +333,7 @@ function Formulario() {
                       <a
                         className="dropdown-item"
                         onClick={e => setLab(e.target.textContent)}>
-                        Janssen
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        onClick={e => setLab(e.target.textContent)}>
                         Sputnik V
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        onClick={e => setLab(e.target.textContent)}>
-                        Covaxin
                       </a>
                     </li>
                   </ul>
@@ -374,7 +360,7 @@ function Formulario() {
                   </ul>
                 </div>
 
-                <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50">
+                <div className="input-group input-group-lg mb-3 ps-1 pe-5 w-50 text-wrap">
                   <span className="input-group-text" id="basic-addon1">Raça/Cor/Etnia</span>
                   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{etnia}</button>
                   <ul className="dropdown-menu">
@@ -569,7 +555,7 @@ function Formulario() {
                   )}
                 </div>
 
-                <div className="input-group input-group-lg mb-3 px-5 has-validation">
+                <div className="input-group input-group-lg px-5 has-validation">
                   <span className="input-group-text" id="basic-addon1">Complemento</span>
                   <input
                     type="text"

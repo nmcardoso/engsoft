@@ -43,11 +43,19 @@ function UserPage() {
       <div className="limiter">
         <nav className="navbar navbar-light bg-light rounded-top mx-5 mt-3">
           <div className="container-fluid">
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarToggleExternalContent"
+              aria-controls="navbarToggleExternalContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
               <span className="navbar-toggler-icon"></span>
               <span> Menu</span>
             </button>
-            <span className=''>Página do usuário</span>
+            <span className="">Página do usuário</span>
           </div>
         </nav>
 
