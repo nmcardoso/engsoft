@@ -54,4 +54,68 @@ router.post('/', formChain, async (req, res) => {
   }
 })
 
+
+const getUnsyncedForms = (idUnidade) => {
+  return Formulario.findAndCountAll({
+    where: {
+      [Op.or]: [
+        {
+          syncAt: { [Op.is]: null }
+        },
+        {
+          syncAt: {
+            [Op.lt]: {
+              [Op.col]: 'formulario.updatedAt'
+            }
+          }
+        }
+      ],
+      id_unidade_saude: idUnidade
+    },
+    include: UnidadeSaude
+  })
+}
+
+
+router.get('/sync/:id', async (req, res) => {
+  try {
+    const idUnidade = req.params.id
+
+    const { rows } = await getUnsyncedForms(idUnidade)
+
+    const data = rows.map(e => {
+      const o = e.toJSON()
+      delete o.id
+      delete o.id_unidade_saude
+      delete o.syncAt
+      delete o.id_vacivida
+      delete o.createdAt
+      delete o.updatedAt
+      delete o.unidade_saude.id
+      delete o.unidade_saude.createdAt
+      delete o.unidade_saude.updatedAt
+      return o
+    })
+
+    const vacividaApi = new VacividaAPI()
+    const result = await vacividaApi.sendForms(data)
+
+    const updateData = rows.map((e, i) => ({
+      id: e.id,
+      id_vacivida: result.data[i].id,
+      syncAt: db.fn('NOW')
+    }))
+
+    const r = await Formulario.bulkCreate(updateData, {
+      fields: ['id', 'id_vacivida', 'syncAt'],
+      updateOnDuplicate: ['id_vacivida', 'syncAt']
+    })
+
+    res.json({ success: true, message: 'Formulários enviados ao Vacivida com sucesso' })
+  } catch (err) {
+    console.log(err)
+    res.json({ sucess: false })
+  }
+})
+
 module.exports = router
