@@ -298,7 +298,7 @@ function Formulario() {
         return
       }
 
-      if (!parseInt(data.slice(-1))) {
+      if (!Number.isInteger(parseInt(data.slice(-1)))) {
         valuesDispatcher({ telefone: data.slice(0, -1) }) //coiso
         return 'Este campo aceita apenas numeros'
       }
