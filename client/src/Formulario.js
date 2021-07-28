@@ -184,8 +184,10 @@ function Formulario() {
         .replace('.', '').replace('.', '')
         .replace('-', '')
         .trim();
-      if (cpf.length === 12)
+      if (cpf.length === 12) {
         valuesDispatcher({cpf: data.slice(0,-1)}) //tiro o 1ue foi colocado 
+        cpf = cpf.slice(0,-1)
+      }
       if (cpf.length === 11) {
         if(!validaCPF(cpf))
           return 'CPF inválido'
