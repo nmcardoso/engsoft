@@ -385,15 +385,15 @@ function Formulario() {
                 <div className="ContainerButton d-flex align-middle">
                   <Link
                     to='/userpage'>
-                    <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Usuário 🏠</button>
+                    <button className='btn btn-light fw-bold py-3 px-4 border border-dark mx-2'>Usuário 🏠</button>
                   </Link>
                   <Link
                     to='/powerbi'>
-                    <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Análise 📊</button>
+                    <button className='btn btn-light fw-bold py-3 px-4 border border-dark mx-2'>Análise 📊</button>
                   </Link>
                   <Link
                     to='/feedback'>
-                    <button className='btn btn-light fw-bold py-3 px-5 border border-dark mx-2'>Feedback 🔁</button>
+                    <button className='btn btn-light fw-bold py-3 px-4 border border-dark mx-2'>Feedback 🔁</button>
                   </Link>
                 </div>
               </div>
@@ -803,14 +803,14 @@ function Formulario() {
                     onBlur={e => handleFieldChange('complemento', e.target.value)}
                     onChange={e => handleFieldChange('complemento', e.target.value)} />
                 </div>
-              </div>
-              <div className="d-grid gap-2">
-                <button
-                  type="button"
-                  onClick={handleFormulario}
-                  className="btn btn-primary btn-large mx-5 my-3">
-                  Enviar
-                </button>
+                <div className="d-block gap-2 w-100 mx-5 my-3">
+                  <button
+                    type="button"
+                    onClick={handleFormulario}
+                    className="btn btn-dark btn-large w-100 mb-3">
+                    Enviar
+                  </button>
+                </div>
               </div>
             </form>
           </div>

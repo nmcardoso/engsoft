@@ -21,7 +21,7 @@ function PowerBI() {
               <span className="navbar-toggler-icon"></span>
               <span> Menu</span>
             </button>
-            <span className="">Página do usuário</span>
+            <span className="">Análise</span>
           </div>
         </nav>
 
@@ -31,17 +31,17 @@ function PowerBI() {
 
             <div className="ContainerButton d-flex align-middle">
               <Link to="/formulario">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                <button className="btn btn-light fw-bold py-3 px-4 border border-dark mx-2">
                   Formulário ✏️️
                 </button>
               </Link>
               <Link to="/userpage">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                <button className="btn btn-light fw-bold py-3 px-4 border border-dark mx-2">
                   Usuário 🏠
                 </button>
               </Link>
               <Link to="/feedback">
-                <button className="btn btn-light fw-bold py-3 px-5 border border-dark mx-2">
+                <button className="btn btn-light fw-bold py-3 px-4 border border-dark mx-2">
                   Feedack 🔁
                 </button>
               </Link>
