@@ -39,8 +39,8 @@ export function AuthProvider({ children }) {
         session: { token: resp.data.token, logged: true }
       })
     } catch (err) {
-      message = err.data.message
-      success = err.data.success
+      message = err.message
+      success = err.success
 
       setState({
         user: null,
